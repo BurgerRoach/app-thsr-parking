@@ -10,14 +10,12 @@ require_relative 'park'
 module THSR
   # Library for THSR API
   class Api
-    attr_accessor :data
-
     include Errors
     HTTP_ERROR = {
       401 => Errors::Unauthorized,
       404 => Errors::NotFound
     }.freeze
-    
+
     API_URL = 'https://traffic.transportdata.tw/MOTC/v1/Parking/OffStreet/ParkingAvailability/Rail/THSR?$format=JSON'
 
     def search(options = {})
