@@ -15,3 +15,7 @@ Security/YAMLLoad:
   Enabled: true
   Exclude:
     - spec/**/*
+
+GlobalVars:
+  AllowedVariables:
+    - $data
