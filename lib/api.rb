@@ -57,7 +57,7 @@ module THSR
       # @params options {hash}
       # @return {hash} the response data after filtered by park id
       filtered_data = search(options)
-      THSR::Park.new(filtered_data, park_id)
+      THSR::Park.new(filtered_data, park_id).choose
     end
 
     private
