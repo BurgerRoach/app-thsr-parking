@@ -9,10 +9,8 @@ module THSR
     end
 
     def flatten
-      @data.delete('UpdateInterval')
-      @data.delete('SrcUpdateTime')
-      @data.delete('SrcUpdateInterval')
-      @data.delete('AuthorityCode')
+      useless_key = %w[UpdateInterval SrcUpdateTime SrcUpdateInterval AuthorityCode]
+      useless_key.each { |k| @data.delete(k) }
       @data['ParkingAvailabilities'].map do |item|
         item['CarParkName'] = item['CarParkName']['Zh_tw']
         item.delete('Availabilities')
@@ -25,17 +23,21 @@ module THSR
     private
 
     def filter_by_options
-      if @options.key?(:service_status)
-        @data['ParkingAvailabilities'].select! { |item| item['ServiceStatus'] == @options[:service_status] }
-      end
+      options_select_service_status if @options.key?(:service_status)
+      options_select_service_available_level if @options.key?(:service_available_level)
+      options_select_charge_status if @options.key?(:charge_status)
+    end
+    
+    def options_select_service_status
+      @data['ParkingAvailabilities'].select! { |item| item['ServiceStatus'] == @options[:service_status] }
+    end
 
-      if @options.key?(:service_available_level) # There is no service available level, only AvailableSpaces
-        @data['ParkingAvailabilities'].select! { |item| item['AvailableSpaces'] >= @options[:available_spaces] }
-      end
+    def options_select_service_available_level
+      @data['ParkingAvailabilities'].select! { |item| item['AvailableSpaces'] >= @options[:service_available_level] }
+    end
 
-      if @options.key?(:charge_status)
-        @data['ParkingAvailabilities'].select! { |item| item['ChargeStatus'] == @options[:charge_status] }
-      end
+    def options_select_charge_status
+      @data['ParkingAvailabilities'].select! { |item| item['ChargeStatus'] == @options[:charge_status] }
     end
   end
 end
