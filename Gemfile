@@ -3,7 +3,8 @@
 source 'https://rubygems.org'
 
 # Networking
-gem 'http', '~> 4.0'
+
+gem 'json'
 
 # Testing
 gem 'minitest', '~> 5.0'

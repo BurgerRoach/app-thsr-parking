@@ -30,7 +30,7 @@ module THSR
       end
 
       if @options.key?(:service_available_level)
-        @data['ParkingAvailabilities'].select! { |item| item['ServiceAvailableLevel'] >= @options[:service_available_level] }
+        @data['ParkingAvailabilities'].select! { |item| item['AvailableSpaces'] >= @options[:service_available_level] }
       end
 
       if @options.key?(:charge_status)

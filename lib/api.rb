@@ -4,14 +4,15 @@ require 'net/http'
 require 'json'
 require_relative 'base'
 require_relative 'errors'
-require_relative 'city'
-require_relative 'park'
+# require_relative 'city'
+# require_relative 'park'
 
 module THSR
   # Library for THSR API
   class Api
     include Errors
     HTTP_ERROR = {
+      400 => Errors::BadRequest,
       401 => Errors::Unauthorized,
       404 => Errors::NotFound
     }.freeze
@@ -37,6 +38,8 @@ module THSR
       #     "DataCollectTime": "2020-10-13T14:35:12+08:00"
       #   }]
       # }
+      raise Errors::OptionsError if check_opts?(options) == false
+
       raw_data = call_api
       THSR::Base.new(raw_data, options).flatten
     end
@@ -67,6 +70,15 @@ module THSR
 
     def check_req_status?(status_code)
       HTTP_ERROR.keys.include?(status_code) ? false : true
+    end
+
+    def check_opts?(opts)
+      option_keys = %i[service_status service_available_level charge_status]
+
+      return true if opts.empty?
+
+      opts.each_key { |k| return false if option_keys.include?(k) == false }
+      true
     end
   end
 end
