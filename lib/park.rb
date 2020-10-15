@@ -3,7 +3,7 @@
 module THSR
   # Model for park
   class Park
-    def initialize(filtered_data, park_id)
+    def initialize(park_id, filtered_data)
       @data = filtered_data
       @park_id = park_id
     end
@@ -15,12 +15,18 @@ module THSR
     end
 
     def choose
+      check_id_format
       @data['ParkingAvailabilities'].select! do |item|
         item['CarParkID'] == @park_id
       end
       return onehash unless @data['ParkingAvailabilities'][0].nil?
 
-      'Sorry, no parking lot can meet your needs'
+      nil # 'Sorry, no parking lot can meet your needs'
+    end
+
+    def check_id_format
+      id_format = /^\d{4}$/
+      raise Errors::IDFormatError if id_format.match(@park_id).nil?
     end
   end
 end

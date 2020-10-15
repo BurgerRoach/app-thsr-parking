@@ -26,4 +26,27 @@ describe 'Tests THSR API library' do
       end).must_raise Errors::OptionsError
     end
   end
+
+  describe 'Search Park information' do
+    it 'HAPPY: should provide correct search park information' do
+      opts = { 'charge_status': 1 }
+      id = '2100'
+      data = THSR::Api.new.search_by_park_id(id, opts)
+      _(data['CarParkID']).must_equal id
+    end
+
+    it 'HAPPY: should provide correct search park information when not found' do
+      opts = { 'charge_status': 2 }
+      id = '2100'
+      data = THSR::Api.new.search_by_park_id(id, opts)
+      _(data).must_be_nil
+    end
+
+    it 'SAD: should raise exception on incorrect ID format' do
+      id = 'AAAA'
+      _(proc do
+        THSR::Api.new.search_by_park_id(id)
+      end).must_raise Errors::IDFormatError
+    end
+  end
 end

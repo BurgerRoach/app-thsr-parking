@@ -8,4 +8,7 @@ module Errors
 
   # Options Error
   class OptionsError < StandardError; end
+
+  # ID format Error
+  class IDFormatError < StandardError; end
 end
