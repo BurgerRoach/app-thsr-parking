@@ -27,7 +27,7 @@ module THSR
       options_select_service_available_level if @options.key?(:service_available_level)
       options_select_charge_status if @options.key?(:charge_status)
     end
-    
+
     def options_select_service_status
       @data['ParkingAvailabilities'].select! { |item| item['ServiceStatus'] == @options[:service_status] }
     end

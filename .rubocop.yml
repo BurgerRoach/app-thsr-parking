@@ -7,3 +7,9 @@ AllCops:
 GlobalVars:
   AllowedVariables:
     - $data
+
+# ignore block length in test code only
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - spec/**/*

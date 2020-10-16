@@ -5,7 +5,7 @@ require 'json'
 require_relative 'base'
 require_relative 'errors'
 # require_relative 'city'
-# require_relative 'park'
+require_relative 'park'
 
 module THSR
   # Library for THSR API
@@ -57,7 +57,7 @@ module THSR
       # @params options {hash}
       # @return {hash} the response data after filtered by park id
       filtered_data = search(options)
-      THSR::Park.new(filtered_data, park_id).choose
+      THSR::Park.new(park_id, filtered_data).choose
     end
 
     private

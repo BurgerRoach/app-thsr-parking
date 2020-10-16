@@ -5,7 +5,7 @@ require_relative 'lib/api'
 api = THSR::Api.new
 opts = {
   'service_status': 1,
-  'available_spaces': 60,
+  'service_available_level': 60,
   'charge_status': 1
 }
 id = '2500'
