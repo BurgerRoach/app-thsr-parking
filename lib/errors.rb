@@ -11,4 +11,7 @@ module Errors
 
   # ID format Error
   class IDFormatError < StandardError; end
+
+  # ID format Error
+  class StrFormatError < StandardError; end
 end

@@ -8,8 +8,13 @@ opts = {
   'service_available_level': 60,
   'charge_status': 1
 }
-id = '2500'
+# id = '2500'
+# data = api.search(opts)
+# # print data
+# park = api.search_by_park_id(id, opts)
+# puts "\n\n#{park}"
+
+city = '浙江'
 data = api.search(opts)
-print data
-park = api.search_by_park_id(id, opts)
-puts "\n\n#{park}"
+pkl_city = api.search_by_city(city, opts)
+puts "\n#{pkl_city}"
