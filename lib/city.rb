@@ -8,9 +8,14 @@ module THSR
       @city = city
     end
 
-    def push_to_arr(element, arr)
-      element['CarParkName'] = element['CarParkName']
-      arr << element
+    def check_str_format(str)
+      raise Errors::StrFormatError unless str.is_a? String
+    end
+
+    def screening(hash, arr)
+      hash.each do |n|
+        arr << n if n['CarParkName'].include?(@city)
+      end
     end
 
     def getparkinglot
@@ -21,17 +26,7 @@ module THSR
       hash['UpdateTime'] = @data['UpdateTime']
       screening(parking_availabilities, arr)
       hash['ParkingAvailabilities'] = arr
-      hash unless hash['ParkingAvailabilities'].length.zero?
-    end
-
-    def screening(hash, arr)
-      hash.each do |n|
-        push_to_arr(n, arr) if n['CarParkName'].include?(@city)
-      end
-    end
-
-    def check_str_format(str)
-      raise Errors::StrFormatError unless str.is_a? String
+      return hash unless hash['ParkingAvailabilities'].length.zero?
     end
   end
 end
