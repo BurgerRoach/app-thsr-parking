@@ -4,7 +4,7 @@ require 'net/http'
 require 'json'
 require_relative 'base'
 require_relative 'errors'
-# require_relative 'city'
+require_relative 'city'
 require_relative 'park'
 
 module THSR
@@ -49,7 +49,7 @@ module THSR
       # @params options {hash}
       # @return {array-hash} the response data after filtered by city name
       filtered_data = search(options)
-      THSR::City.new(filtered_data, city)
+      THSR::City.new(filtered_data, city).getparkinglot
     end
 
     def search_by_park_id(park_id, options = {})

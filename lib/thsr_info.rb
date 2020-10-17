@@ -21,4 +21,4 @@ def filter_data(input)
 end
 api_url = 'https://traffic.transportdata.tw/MOTC/v1/Parking/OffStreet/ParkingAvailability/Rail/THSR?$format=JSON'
 data = call_thsr_api(api_url)['ParkingAvailabilities']
-File.write('spec/fixtures/thsr_results.yml', filter_data(data).to_yaml)
+File.write('../spec/fixtures/thsr_results.yml', filter_data(data).to_yaml)

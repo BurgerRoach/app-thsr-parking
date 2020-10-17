@@ -45,7 +45,8 @@ api = THSR::Api.new
 data = api.search
 ```
 
-Part of  return : 
+
+Part of return : 
 
 ```ruby
 {"UpdateTime"=>"2020-10-16T19:13:57+08:00", "ParkingAvailabilities"=>[{"CarParkID"=>"2100", "CarParkName"=>"高鐵桃園站戶外短期停車場(P1)", "TotalSpaces"=>46, "AvailableSpaces"=>30, "ServiceStatus"=>1, "FullStatus"=>0, "ChargeStatus"=>1, "DataCollectTime"=>"2020-10-16T19:13:12+08:00"}, {"CarParkID"=>"2200", "CarParkName"=>"高鐵桃園站戶外短期停車場(P2)", "TotalSpaces"=>55, "AvailableSpaces"=>18, "ServiceStatus"=>1, "FullStatus"=>0, "ChargeStatus"=>1, "DataCollectTime"=>"2020-10-16T19:13:12+08:00"},...]}
@@ -68,7 +69,19 @@ data = api.search(opts)
 
 `charge_status` : Parking charge status: [0:'No charge', 1:'Normal charge', 2:'Suspended charge']
 
-* #### Search park by city
+
+* #### Search park by City
+
+```ruby
+city = '苗栗'
+park = api.search_by_city(city)
+```
+
+Return wii be like:
+
+```ruby
+{"UpdateTime"=>"2020-10-17T16:06:57+08:00", "ParkingAvailabilities"=>[{"CarParkID"=>"2500", "CarParkName"=>"高鐵苗栗站戶外平面停車場(P1)", "TotalSpaces"=>449, "AvailableSpaces"=>290, "ServiceStatus"=>1, "FullStatus"=>0, "ChargeStatus"=>1, "DataCollectTime"=>"2020-10-17T16:06:12+08:00"}]}
+```
 
 * #### Search park by Park_ID
 
@@ -88,7 +101,10 @@ Return wii be like:
 
 * `search(option)`
   * option *hash*: Your condiition
-* `search_by_city`
+
+* `search_by_city(city)`
+  * city name: must be string
+
 * `search_by_park_id(id)`
   * id *string* : it must be a 4-digit string
 
