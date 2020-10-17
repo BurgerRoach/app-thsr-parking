@@ -45,6 +45,7 @@ api = THSR::Api.new
 data = api.search
 ```
 
+
 Part of return : 
 
 ```ruby
@@ -67,6 +68,7 @@ data = api.search(opts)
 `service_available_level` : Vacancy remain
 
 `charge_status` : Parking charge status: [0:'No charge', 1:'Normal charge', 2:'Suspended charge']
+
 
 * #### Search park by City
 
@@ -99,8 +101,10 @@ Return wii be like:
 
 * `search(option)`
   * option *hash*: Your condiition
+
 * `search_by_city(city)`
   * city name: must be string
+
 * `search_by_park_id(id)`
   * id *string* : it must be a 4-digit string
 
