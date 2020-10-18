@@ -20,24 +20,6 @@ module THSR
     API_URL = 'https://traffic.transportdata.tw/MOTC/v1/Parking/OffStreet/ParkingAvailability/Rail/THSR?$format=JSON'
 
     def search(options = {})
-      # @params options {hash}
-      #   - service_status {int/nil} 停車場營業狀態:[0:'休息中',1:'營業中',2:'暫停營業']
-      #   - service_available_level {int/nil} 尚有空位門檻
-      #   - charge_status {int/nil} 停車收費狀態:[0:'不收費',1:'正常收費',2:'暫停收費']
-      # @return {array-hash} the response data after filtered
-      # {
-      #   "UpdateTime": "2020-10-13T14:35:57+08:00",
-      #   "ParkingAvailabilities": [{
-      #     "CarParkID": "2100",
-      #     "CarParkName": "高鐵桃園站戶外短期停車場(P1)",
-      #     "TotalSpaces": 46,
-      #     "AvailableSpaces": 30,
-      #     "ServiceStatus": 1,
-      #     "FullStatus": 0,
-      #     "ChargeStatus": 1,
-      #     "DataCollectTime": "2020-10-13T14:35:12+08:00"
-      #   }]
-      # }
       raise Errors::OptionsError if check_opts?(options) == false
 
       raw_data = call_api
