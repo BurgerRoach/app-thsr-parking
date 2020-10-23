@@ -1,13 +1,20 @@
 # frozen_string_literal: false
 
-require 'minitest/autorun'
-# require 'minitest/rg'
-require 'yaml'
-require_relative '../lib/api'
-require_relative '../lib/errors'
-CORRECT = YAML.safe_load(File.read('fixtures/thsr_results.yml'))
+require_relative 'spec_helper'
 
 describe 'Tests THSR API library' do
+  VCR.configure do |c|
+    c.cassette_library_dir = CASSETTES_FOLDER
+    c.hook_into :webmock
+  end
+
+  before do
+    VCR.insert_cassette CASSETTE_FILE, record: :new_episodes, match_requests_on: %i[method uri headers]
+  end
+
+  after do
+    VCR.eject_cassette
+  end
   describe 'Search real time inquiry information' do
     it 'HAPPY: should provide correct search information' do
       data = THSR::Api.new.search
