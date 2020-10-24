@@ -8,25 +8,31 @@ module THSR
       @city = city
     end
 
-    def check_str_format(str)
-      raise Errors::StrFormatError unless str.is_a? String
+    def get
+      raise Errors::StrFormatError if invalid_city_format?
+
+      hash = {}
+      parking_availabilities = @data['ParkingAvailabilities']
+      hash['UpdateTime'] = @data['UpdateTime']
+      filtered_data = screening(parking_availabilities)
+      hash['ParkingAvailabilities'] = filtered_data
+      return hash unless hash['ParkingAvailabilities'].length.zero?
     end
 
-    def screening(hash, arr)
+    private
+
+    def screening(hash)
+      arr = []
       hash.each do |n|
         arr << n if n['CarParkName'].include?(@city)
       end
+      arr
     end
 
-    def getparkinglot
-      check_str_format(@city)
-      hash = {}
-      arr = []
-      parking_availabilities = @data['ParkingAvailabilities']
-      hash['UpdateTime'] = @data['UpdateTime']
-      screening(parking_availabilities, arr)
-      hash['ParkingAvailabilities'] = arr
-      return hash unless hash['ParkingAvailabilities'].length.zero?
+    def invalid_city_format?
+      return true unless @city.is_a? String
+
+      false
     end
   end
 end
