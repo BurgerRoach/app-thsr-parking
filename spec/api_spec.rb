@@ -5,7 +5,7 @@ require 'minitest/autorun'
 require 'yaml'
 require_relative '../lib/api'
 require_relative '../lib/errors'
-CORRECT = YAML.safe_load(File.read('fixtures/thsr_results.yml'))
+CORRECT = YAML.safe_load(File.read('spec/fixtures/thsr_results.yml'))
 
 describe 'Tests THSR API library' do
   describe 'Search real time inquiry information' do
