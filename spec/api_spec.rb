@@ -19,7 +19,16 @@ describe 'Tests THSR API library' do
     it 'HAPPY: should provide correct search information' do
       data = THSR::Api.new.search
 
+      _(data['ParkingAvailabilities']).must_be_instance_of(Array)
       _(data['ParkingAvailabilities'].size).wont_equal 0
+    end
+
+    it 'HAPPY: should provide correct search information' do
+      opts = { 'service_status': 1, 'charge_status': 1, 'service_available_level': 10 }
+      data = THSR::Api.new.search(opts)
+      result = data['ParkingAvailabilities'].sample
+      _(result['AvailableSpaces']).must_be :>=, 10
+      _(result['ServiceStatus']).must_equal 1
     end
 
     it 'HAPPY: should provide correct search information' do
@@ -38,12 +47,12 @@ describe 'Tests THSR API library' do
 
   describe 'Search Park information' do
     it 'HAPPY: should provide correct search park information' do
-      opts = { 'charge_status': 1 }
       testing = CORRECT.sample
-      data = THSR::Api.new.search_by_park_id(testing['CarParkID'], opts)
+      data = THSR::Api.new.search_by_park_id(testing['CarParkID'])
       _(data['AvailableSpaces']).wont_be_nil
       _(data['CarParkID']).must_equal testing['CarParkID']
       _(data['CarParkName']).must_equal testing['CarParkName']
+      _(data['AvailableSpaces']).must_be_instance_of(Integer)
     end
 
     it 'HAPPY: should provide correct search park information when not found' do
@@ -53,6 +62,15 @@ describe 'Tests THSR API library' do
       _(data).must_be_nil
     end
 
+    it 'SAD: should raise exception on incorrect ID format' do
+      id = '111'
+      _(proc do
+        THSR::Api.new.search_by_park_id(id)
+      end).must_raise Errors::IDFormatError
+    end
+  end
+
+  describe 'Search Park information by city' do
     it 'HAPPY: should provide correct search park information with city name' do
       opts = { 'charge_status': 1 }
       testing = CORRECT.sample
@@ -70,13 +88,6 @@ describe 'Tests THSR API library' do
       city_str = '浙江'
       data = THSR::Api.new.search_by_city(city_str, opts)
       _(data).must_be_nil
-    end
-
-    it 'SAD: should raise exception on incorrect ID format' do
-      id = 'AAAA'
-      _(proc do
-        THSR::Api.new.search_by_park_id(id)
-      end).must_raise Errors::IDFormatError
     end
 
     it 'SAD: should raise exception on city name not in string' do
