@@ -10,16 +10,12 @@ module THSR
 
     def onehash
       [@data.first].to_h.merge(@data['ParkingAvailabilities'].inject(:merge)) # Transform into one hash
-      # @data['ParkingAvailabilities'] = @data['ParkingAvailabilities'][0] # remain Parking Availabilities
-      # @data
     end
 
     def get
       raise Errors::IDFormatError if invalid_id_format?
 
-      @data['ParkingAvailabilities'].select! do |item|
-        item['CarParkID'] == @park_id
-      end
+      @data['ParkingAvailabilities'].select! { |item| item['CarParkID'] == @park_id }
       return onehash unless @data['ParkingAvailabilities'][0].nil?
 
       nil # 'Sorry, no parking lot can meet your needs'
