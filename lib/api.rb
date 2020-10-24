@@ -3,6 +3,7 @@
 require 'net/http'
 require 'json'
 require_relative 'base'
+require_relative 'options'
 require_relative 'errors'
 require_relative 'city'
 require_relative 'park'
@@ -20,7 +21,7 @@ module THSR
     API_URL = 'https://traffic.transportdata.tw/MOTC/v1/Parking/OffStreet/ParkingAvailability/Rail/THSR?$format=JSON'
 
     def search(options = {})
-      raise Errors::OptionsError if invalid_options?(options)
+      raise Errors::OptionsError if THSR::Options.new.invalid_options?(options)
 
       raw_data = call_api
       THSR::Base.new(raw_data, options).flatten
@@ -52,15 +53,6 @@ module THSR
 
     def http_error?(status_code)
       HTTP_ERROR.keys.include?(status_code) ? false : true
-    end
-
-    def invalid_options?(opts)
-      option_keys = %i[service_status service_available_level charge_status]
-
-      return false if opts.empty?
-
-      opts.each_key { |k| return false if option_keys.include?(k) == true }
-      false
     end
   end
 end
