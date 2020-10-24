@@ -1,5 +1,4 @@
 config/secrets.yml
 coverage/* 
 !coverage/.resultset.json
-spec/fixtures/
 .DS_Store
