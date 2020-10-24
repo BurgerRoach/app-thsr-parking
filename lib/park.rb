@@ -14,8 +14,9 @@ module THSR
       # @data
     end
 
-    def choose
-      check_id_format
+    def get
+      raise Errors::IDFormatError if invalid_id_format?
+
       @data['ParkingAvailabilities'].select! do |item|
         item['CarParkID'] == @park_id
       end
@@ -24,9 +25,13 @@ module THSR
       nil # 'Sorry, no parking lot can meet your needs'
     end
 
-    def check_id_format
+    private
+
+    def invalid_id_format?
       id_format = /^\d{4}$/
-      raise Errors::IDFormatError if id_format.match(@park_id).nil?
+      return true if id_format.match(@park_id).nil?
+
+      false
     end
   end
 end

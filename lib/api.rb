@@ -20,7 +20,7 @@ module THSR
     API_URL = 'https://traffic.transportdata.tw/MOTC/v1/Parking/OffStreet/ParkingAvailability/Rail/THSR?$format=JSON'
 
     def search(options = {})
-      raise Errors::OptionsError if check_opts?(options) == false
+      raise Errors::OptionsError if invalid_options?(options)
 
       raw_data = call_api
       THSR::Base.new(raw_data, options).flatten
@@ -31,7 +31,7 @@ module THSR
       # @params options {hash}
       # @return {array-hash} the response data after filtered by city name
       filtered_data = search(options)
-      THSR::City.new(filtered_data, city).getparkinglot
+      THSR::City.new(filtered_data, city).get
     end
 
     def search_by_park_id(park_id, options = {})
@@ -39,7 +39,7 @@ module THSR
       # @params options {hash}
       # @return {hash} the response data after filtered by park id
       filtered_data = search(options)
-      THSR::Park.new(park_id, filtered_data).choose
+      THSR::Park.new(park_id, filtered_data).get
     end
 
     private
@@ -47,20 +47,20 @@ module THSR
     def call_api
       uri = URI(API_URL)
       response = Net::HTTP.get_response(uri)
-      check_req_status?(response.code) ? JSON.parse(response.body) : raise(HTTP_ERROR[response.code])
+      http_error?(response.code) ? JSON.parse(response.body) : raise(HTTP_ERROR[response.code])
     end
 
-    def check_req_status?(status_code)
+    def http_error?(status_code)
       HTTP_ERROR.keys.include?(status_code) ? false : true
     end
 
-    def check_opts?(opts)
+    def invalid_options?(opts)
       option_keys = %i[service_status service_available_level charge_status]
 
-      return true if opts.empty?
+      return false if opts.empty?
 
-      opts.each_key { |k| return false if option_keys.include?(k) == false }
-      true
+      opts.each_key { |k| return false if option_keys.include?(k) == true }
+      false
     end
   end
 end
