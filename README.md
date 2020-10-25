@@ -4,6 +4,10 @@ This is a real time inquiry service for Taiwan High Speed Rail (HSR) parking spa
 
 Although it is just a small program, it should save the life of THSRers!
 
+## Domain Language
+
+**AvailableSpaces** (Domain) → **service_available_level** (Language)
+
 ## Status
 
 [![Ruby v2.7.1](https://img.shields.io/badge/Ruby-2.7.1-green)](https://www.ruby-lang.org/en/news/2020/03/31/ruby-2-7-1-released/)
@@ -17,18 +21,8 @@ Although it is just a small program, it should save the life of THSRers!
 
 * #### Test 
 
-Create a directory called `fixtures/` in `THSR-lib/spec/` 
-
-Run `lib/thsr_info.rb` to get sample of resource in API
-
 ```bash
-ruby lib/thsr_info.rb
-```
-
-Then, run `spec/api_spec.rb`  to test whether code work correctly.
-
-```bash
-ruby spec/api_spec.rb
+rake spec
 ```
 
 * #### Call API
