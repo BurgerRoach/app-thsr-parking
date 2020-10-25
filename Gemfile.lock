@@ -1,8 +1,6 @@
 GEM
   remote: https://rubygems.org/
   specs:
-
-    ast (2.4.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.1)

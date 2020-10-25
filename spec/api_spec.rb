@@ -47,11 +47,11 @@ describe 'Tests THSR API library' do
 
   describe 'Search Park information' do
     it 'HAPPY: should provide correct search park information' do
-      testing = CORRECT.sample
-      data = THSR::Api.new.search_by_park_id(testing['CarParkID'])
+      testing = { 'ID': '2600', 'Name': '高鐵苗栗站戶外平面停車場(P2)' }
+      data = THSR::Api.new.search_by_park_id(testing[:ID])
       _(data['AvailableSpaces']).wont_be_nil
-      _(data['CarParkID']).must_equal testing['CarParkID']
-      _(data['CarParkName']).must_equal testing['CarParkName']
+      _(data['CarParkID']).must_equal testing[:ID]
+      _(data['CarParkName']).must_equal testing[:Name]
       _(data['AvailableSpaces']).must_be_instance_of(Integer)
     end
 
@@ -73,13 +73,12 @@ describe 'Tests THSR API library' do
   describe 'Search Park information by city' do
     it 'HAPPY: should provide correct search park information with city name' do
       opts = { 'charge_status': 1 }
-      testing = CORRECT.sample
-      str = testing['CarParkName'].to_s
-      city_str = str[2..3]
-      data = THSR::Api.new.search_by_city(city_str, opts)
+      testing_city = '新竹'
+      data = THSR::Api.new.search_by_city(testing_city, opts)
+      _(data['ParkingAvailabilities'].size).must_equal 3
       data['ParkingAvailabilities'].each do |n|
-        _(n['CarParkName'][2..3]).must_equal testing['CarParkName'][2..3]
-        _(n['CarParkName'][2..3]).must_equal city_str
+        _(n['CarParkName'][2..3]).must_equal testing_city
+        _(n['AvailableSpaces']).must_be_instance_of(Integer)
       end
     end
 
