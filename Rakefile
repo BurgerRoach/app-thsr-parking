@@ -14,6 +14,12 @@ task :spec do
   puts 'Tests executed'
 end
 
+desc 'Run tests'
+task :gateway_spec do
+  sh 'ruby spec/gateway_api_spec.rb'
+  puts 'Tests executed'
+end
+
 desc 'Run example'
 task :example do
   sh 'ruby example.rb'

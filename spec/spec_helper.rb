@@ -12,6 +12,8 @@ require 'webmock'
 require_relative '../lib/api'
 require_relative '../lib/errors'
 
+require_relative '../app/models/gateways/api'
+
 # CORRECT = YAML.safe_load(File.read('spec/fixtures/thsr_results.yml'))
 
 CASSETTES_FOLDER = 'spec/fixtures/cassettes'

@@ -1,0 +1,70 @@
+# frozen_string_literal: true
+
+require 'json'
+
+require_relative '../entities/single_park'
+require_relative '../entities/multi_park'
+
+module THSRParking
+  # Provides access to THSR park spacing data
+  module THSR
+    # Data Mapper: THSR park spacing data -> MultiPark Entity
+    class BaseMapper
+      def initialize(raw_data, options)
+        @data = raw_data
+        @options = options
+        @multi_park_instance = THSRParking::Entity::MultiPark.new(
+          update_time: raw_data['UpdateTime'], parks: []
+        )
+      end
+
+      def flatten
+        @data['ParkingAvailabilities'].each do |item|
+          @multi_park_instance.parks.append(DataMapper.new(item).build_entity)
+        end
+
+        filter_by_options if @options
+        @multi_park_instance
+      end
+
+      private
+
+      def filter_by_options
+        options_select_service_status if @options.key?(:service_status)
+        options_select_service_available_level if @options.key?(:service_available_level)
+        options_select_charge_status if @options.key?(:charge_status)
+      end
+
+      def options_select_service_status
+        @multi_park_instance.parks.select! { |item| item.service_status == @options[:service_status] }
+      end
+
+      def options_select_service_available_level
+        @multi_park_instance.parks.select! { |item| item.available_spaces >= @options[:service_available_level] }
+      end
+
+      def options_select_charge_status
+        @multi_park_instance.parks.select! { |item| item.charge_status == @options[:charge_status] }
+      end
+
+      # Extracts entity specific elements from data structure
+      class DataMapper
+        def initialize(data)
+          @data = data
+        end
+
+        def build_entity
+          THSRParking::Entity::SinglePark.new(
+            id: @data['CarParkID'],
+            name: @data['CarParkName']['Zh_tw'],
+            total_spaces: @data['TotalSpaces'],
+            available_spaces: @data['AvailableSpaces'],
+            service_status: @data['ServiceStatus'],
+            full_status: @data['FullStatus'],
+            charge_status: @data['ChargeStatus']
+          )
+        end
+      end
+    end
+  end
+end

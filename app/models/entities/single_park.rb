@@ -1,18 +1,22 @@
 # frozen_string_literal: true
 
-module THSR
+require 'dry-types'
+require 'dry-struct'
+
+module THSRParking
   module Entity
     # Domain entity for any coding projects
     class SinglePark < Dry::Struct
       include Dry.Types
 
-      attribute :id,               Strict::Integer
-      attribute :name,             Strict::String
-      attribute :service,          Strict::Integer
-      attribute :fullstatus,       Strict::String
-      attribute :charge,           Strict::Integer
-      attribute :totalspace,       Strict::Integer
-      attribute :available,        Strict::Integer
+      # attribute :update_time,       Strict::String.optional
+      attribute :id,                Strict::String
+      attribute :name,              Strict::String
+      attribute :total_spaces,      Strict::Integer
+      attribute :available_spaces,  Strict::Integer
+      attribute :service_status,    Strict::Integer
+      attribute :full_status,       Strict::Integer
+      attribute :charge_status,     Strict::Integer
     end
   end
 end
