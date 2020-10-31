@@ -1,18 +1,36 @@
 .container
-  form role="form" action="/project" method='POST' id='show-project-form'
+  form role="form" action="/result/park" method='POST' id='show-parking-form_id'
     .row.vertical-align.query-bar
       .col-md-2.col-sm-3
-        .text-right Github URL:
+        .text-right Park ID:
       .col-md-8.col-sm-6
         input { 
-          type='text' name='github_url'
-          id='github_url_input' class="form-control"
-          placeholder="e.g. https://www.github.com/soumyaray/YPBT-app"
+          type='text' name='park_id'
+          id='park_id_input' class="form-control"
+          placeholder="e.g. 2500"
         }
       .col-md-2.col-sm-3
         button { 
-          type='submit' id='repo-form-submit' class='submit' 
+          type='submit' id='search-form-submit' class='submit' 
           value='submit' class="btn btn-success" 
-        } Show Project
+        } Search
+    .row
+      .col-md-12.blank-row
+
+  form role="form" action="/result/city" method='POST' id='show-parking-form_city'
+    .row.vertical-align.query-bar
+      .col-md-2.col-sm-3
+        .text-right City NAME:
+      .col-md-8.col-sm-6
+        input { 
+          type='text' name='city_name'
+          id='city_name_input' class="form-control"
+          placeholder="e.g. 新竹"
+        }
+      .col-md-2.col-sm-3
+        button { 
+          type='submit' id='search-form-submit' class='submit' 
+          value='submit' class="btn btn-success" 
+        } Search
     .row
       .col-md-12.blank-row
