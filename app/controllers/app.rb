@@ -12,41 +12,25 @@ module THSR
 
     def to_park(route)
       r = route
-      r.on 'park' do
-        r.is do # get params
-          r.post do
-            park_id = r.params['park_id']
-            r.redirect "/result/park/#{park_id}"
-          end
-        end
-        pass_park(route)
+      r.get 'park' do
+        park_id = r.params['park_id']
+        pass_park(park_id)
       end
     end
 
-    def pass_park(route)
-      r = route
-      r.on String do |park_id|
-        # GET /park/park_id
-        r.get do
-          api = THSRParking::THSR::Api.new
-          data = api.search_by_park_id(park_id)
-          time = data['update_time']
-          parks = data['parks']
-          view 'result', locals: { result: parks, time: time }
-        end
-      end
+    def pass_park(park_id)
+      api = THSRParking::THSR::Api.new
+      data = api.search_by_park_id(park_id)
+      time = data['update_time']
+      parks = data['parks']
+      view 'result', locals: { result: parks, time: time }
     end
 
     def to_city(route)
       r = route
-      r.on 'city' do
-        r.is do # get params
-          r.post do
-            city_name = r.params['city_name']
-
-            pass_city(city_name)
-          end
-        end
+      r.get 'city' do
+        city_name = r.params['city_name']
+        pass_city(city_name)
       end
     end
 
