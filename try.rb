@@ -14,9 +14,9 @@ api = THSRParking::THSR::Api.new
 
 
 ## City ##
-# data = api.search_by_city('台北')
-# print data
+data = api.search_by_city('新竹')
+print data
 
 ## Park ID ##
-data = api.search_by_park_id('2600')
-print data['parks']
+# data = api.search_by_park_id('2600')
+# print data['parks']
