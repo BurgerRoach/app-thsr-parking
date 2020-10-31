@@ -20,25 +20,45 @@ module THSR
 
       routing.on 'result' do
         routing.is do
-          # GET /project/
+          # GET /result/
           routing.post do
-            gh_url = routing.params['github_url'].downcase
-            routing.halt 400 unless (gh_url.include? 'github.com') &&
-                                    (gh_url.split('/').count >= 3)
-            owner, project = gh_url.split('/')[-2..-1]
+            park_info = routing.params['park_id']
+            park_id = park_info
 
-            routing.redirect "project/#{owner}/#{project}"
+            routing.redirect "result/#{park_id}"
           end
         end
 
-        routing.on String, String do |owner, project|
-          # GET /project/owner/project
+        routing.on String do |park_id|
+          # GET /result/park_id
           routing.get do
-            github_project = Github::ProjectMapper
-              .new(GH_TOKEN)
-              .find(owner, project)
+            api = THSRParking::THSR::Api.new
+            data = api.search_by_park_id(park_id)
+            parks = data['parks']
 
-            view 'result', locals: { project: github_project }
+            view 'result', locals: { result: parks }
+          end
+        end
+      end
+
+      routing.on 'result' do
+        routing.is do
+          # GET /result/
+          routing.post do
+            park_info = routing.params['city_name']
+            city_name = park_info
+
+            routing.redirect "result_city/#{city_name}"
+          end
+        end
+        routing.on String do |city_name|
+          # GET /result/city_name
+          routing.get do
+            api = THSRParking::THSR::Api.new
+            data = api.search_by_city(city_name)
+            parks = data['parks']
+
+            view 'result_city', locals: { result: parks }
           end
         end
       end
