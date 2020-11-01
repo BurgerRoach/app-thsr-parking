@@ -7,7 +7,7 @@ module THSR
   # Web App
   class App < Roda
     plugin :render, engine: 'slim', views: 'app/views'
-    plugin :assets, css: 'style.css', path: 'app/views/assets'
+    plugin :assets, css: ['style.scss', 'basic.css'], js: 'index.js', path: 'app/views/assets'
     plugin :halt
 
     def to_park(route)
@@ -44,7 +44,7 @@ module THSR
     end
 
     route do |r|
-      r.assets # load CSS
+      r.assets # load CSS and JS
 
       # GET /
       r.root do
