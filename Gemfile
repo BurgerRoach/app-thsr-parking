@@ -14,6 +14,7 @@ gem 'webmock', '~> 3.0'
 # Web Application
 gem 'puma', '~> 3.11'
 gem 'roda', '~> 3.8'
+gem 'sassc'
 gem 'slim', '~> 3.0'
 
 # Validation

@@ -1,36 +1,22 @@
-.container
-  form role="form" action="/result/park" method='GET' id='show-parking-form_id'
-    .row.vertical-align.query-bar
-      .col-md-2.col-sm-3
-        .text-right Park ID:
-      .col-md-8.col-sm-6
-        input { 
-          type='text' name='park_id'
-          id='park_id_input' class="form-control"
-          placeholder="e.g. 2500"
-        }
-      .col-md-2.col-sm-3
-        button { 
-          type='submit' id='search-form-submit' class='submit' 
-          value='submit' class="btn btn-success" 
-        } Search
-    .row
-      .col-md-12.blank-row
+.thsr-jumbotron
+  .ui.grid.container
+    .jumbotron-content.nine.wide.computer.sixteen.wide.mobile.column
+      .content-title Taiwan High Speed Rail (THSR) real-time parking space enquiry service
 
-  form role="form" action="/result/city" method='GET' id='show-parking-form_city'
-    .row.vertical-align.query-bar
-      .col-md-2.col-sm-3
-        .text-right City NAME:
-      .col-md-8.col-sm-6
-        input { 
-          type='text' name='city_name'
-          id='city_name_input' class="form-control"
-          placeholder="e.g. 新竹"
-        }
-      .col-md-2.col-sm-3
-        button { 
-          type='submit' id='search-form-submit' class='submit' 
-          value='submit' class="btn btn-success" 
-        } Search
-    .row
-      .col-md-12.blank-row
+      .content-description This is a real time inquiry service for Taiwan High Speed Rail (HSR) parking spaces. Although it is just a small program, it should save the life of THSRers!
+
+      .content-action
+        .ui.huge.labeled.action.input
+          .ui.dropdown.label
+            .text Park Id
+            i.dropdown.icon
+            .menu
+              .item Park Id
+              .item City Name
+          input.action-input placeholder="e.g. 2500" type="text" /
+          button.action-btn.ui.primary.button Search
+
+        
+    .jumbotron-art.seven.wide.computer.sixteen.wide.mobile.column
+      .ui.image.art-image
+        img src="https://i.imgur.com/8gzfpQC.jpg" /
