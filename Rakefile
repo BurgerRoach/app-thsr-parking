@@ -45,3 +45,22 @@ namespace :quality do
     puts 'Rubocup checked'
   end
 end
+
+namespace :db do
+  task :config do
+    require 'sequel'
+    require_relative 'config/environment' # load config info
+    # require_relative 'spec/helpers/database_helper'
+
+    def app
+      THSR::App
+    end
+  end
+
+  desc 'Run migrations'
+  task :migrate => :config do
+    Sequel.extension :migration
+    puts "Migrating #{app.environment} database to latest"
+    Sequel::Migrator.run(app.DB, 'app/infrastructure/database/migrations')
+  end
+end
