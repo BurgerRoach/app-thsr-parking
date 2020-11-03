@@ -3,7 +3,7 @@
 # Rakefile
 require 'rake/testtask'
 
-CODE = 'lib/'
+CODE = 'app/'
 task :default do
   puts `rake -T`
 end

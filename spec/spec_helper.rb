@@ -9,8 +9,8 @@ require 'minitest/rg'
 require 'vcr'
 require 'webmock'
 
-require_relative '../lib/api'
-require_relative '../lib/errors'
+# require_relative '../lib/api'
+# require_relative '../lib/errors'
 
 require_relative '../app/models/gateways/api'
 

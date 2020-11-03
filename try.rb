@@ -11,8 +11,6 @@ api = THSRParking::THSR::Api.new
 # }
 # data = api.search(opts)
 # print data
-
-
 ## City ##
 data = api.search_by_city('新竹')
 print data
