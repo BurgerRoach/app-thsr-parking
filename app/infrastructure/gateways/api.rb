@@ -3,11 +3,11 @@
 require 'net/http'
 require 'json'
 
-require_relative '../utils/errors'
-require_relative '../utils/options'
-require_relative '../mappers/base_mapper'
-require_relative '../mappers/city_mapper'
-require_relative '../mappers/park_mapper'
+require_relative '../../models/utils/errors'
+require_relative '../../models/utils/options'
+require_relative '../../models/mappers/base_mapper'
+require_relative '../../models/mappers/city_mapper'
+require_relative '../../models/mappers/park_mapper'
 
 module THSRParking
   module THSR

@@ -12,7 +12,7 @@ require 'webmock'
 # require_relative '../lib/api'
 # require_relative '../lib/errors'
 
-require_relative '../app/models/gateways/api'
+require_relative '../app/infrastructure/gateways/api'
 
 # CORRECT = YAML.safe_load(File.read('spec/fixtures/thsr_results.yml'))
 
