@@ -314,8 +314,38 @@
           null,
           null
         ]
+      },
+      "/Users/guoshiqi/Desktop/SOA/HW/THSR-lib/spec/helpers/vcr_helper.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          10,
+          null,
+          null,
+          1,
+          10,
+          null,
+          null
+        ]
       }
     },
-    "timestamp": 1604419883
+    "timestamp": 1604462347
   }
 }

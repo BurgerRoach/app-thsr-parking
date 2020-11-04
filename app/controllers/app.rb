@@ -2,7 +2,7 @@
 
 require 'roda'
 require 'slim'
-
+require_relative '../infrastructure/gateways/api'
 module THSR
   # Web App
   class App < Roda

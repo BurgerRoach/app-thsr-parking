@@ -46,11 +46,17 @@ namespace :quality do
   end
 end
 
+# desc 'Run tests once'
+# Rake::TestTask.new(:spec) do |t|
+#   t.pattern = 'spec/*_spec.rb'
+#   t.warning = false
+# end
+
 namespace :db do
   task :config do
     require 'sequel'
     require_relative 'config/environment' # load config info
-    # require_relative 'spec/helpers/database_helper'
+    require_relative 'spec/helpers/database_helper'
 
     def app
       THSR::App
@@ -63,4 +69,26 @@ namespace :db do
     puts "Migrating #{app.environment} database to latest"
     Sequel::Migrator.run(app.DB, 'app/infrastructure/database/migrations')
   end
+
+  desc 'Wipe records from all tables'
+  task :wipe => :config do
+    DatabaseHelper.setup_database_cleaner
+    DatabaseHelper.wipe_database
+  end
+
+  desc 'Delete dev or test database file'
+  task :drop => :config do
+    if app.environment == :production
+      puts 'Cannot remove production database!'
+      return
+    end
+
+    FileUtils.rm(THSR::App.config.DB_FILENAME)
+    puts "Deleted #{THSR::App.config.DB_FILENAME}"
+  end
 end
+
+# desc 'Run application console (irb)'
+# task :console do
+#   sh 'irb -r ./init'
+# end
