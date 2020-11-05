@@ -11,8 +11,8 @@ class DatabaseHelper
   end
 
   def self.wipe_database
-    THSR::App.DB.run('PRAGMA foreign_keys = OFF')
+    THSRParking::App.DB.run('PRAGMA foreign_keys = OFF')
     DatabaseCleaner.clean
-    THSR::App.DB.run('PRAGMA foreign_keys = ON')
+    THSRParking::App.DB.run('PRAGMA foreign_keys = ON')
   end
 end

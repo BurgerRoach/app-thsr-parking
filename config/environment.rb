@@ -3,7 +3,7 @@
 require 'roda'
 require 'econfig'
 
-module THSR
+module THSRParking
   # Configuration for the App
   class App < Roda
     plugin :environments

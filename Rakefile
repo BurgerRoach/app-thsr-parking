@@ -22,8 +22,8 @@ end
 
 desc 'Run example'
 task :example do
-  sh 'ruby example.rb'
-  puts 'Example executed'
+  sh 'ruby example/api.rb'
+  puts 'Api Example executed'
 end
 
 namespace :quality do
@@ -59,7 +59,7 @@ namespace :db do
     require_relative 'spec/helpers/database_helper'
 
     def app
-      THSR::App
+      THSRParking::App
     end
   end
 
@@ -68,6 +68,18 @@ namespace :db do
     Sequel.extension :migration
     puts "Migrating #{app.environment} database to latest"
     Sequel::Migrator.run(app.DB, 'app/infrastructure/database/migrations')
+
+    # THSRParking::DatabaseScript::Stations.new.init
+  end
+
+  desc 'Insert init Stations data in database'
+  task :init_data => :config do
+    require_relative 'app/infrastructure/database/scripts/station_script'
+    require_relative 'app/infrastructure/database/scripts/restaurant_script'
+
+    THSRParking::DatabaseScript::Stations.new.init
+    THSRParking::DatabaseScript::Restaurants.new.init
+    puts "Successfully init stations & restaurants data in #{app.environment} database to latest"
   end
 
   desc 'Wipe records from all tables'
@@ -83,8 +95,8 @@ namespace :db do
       return
     end
 
-    FileUtils.rm(THSR::App.config.DB_FILENAME)
-    puts "Deleted #{THSR::App.config.DB_FILENAME}"
+    FileUtils.rm(THSRParking::App.config.DB_FILENAME)
+    puts "Deleted #{THSRParking::App.config.DB_FILENAME}"
   end
 end
 

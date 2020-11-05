@@ -1,0 +1,46 @@
+---
+- :station_id: 1
+  :restaurant: '茶自點桃園高鐵站前店'
+  :type: '餐廳'
+  :latitude: '25.0112898'
+  :longitude: '121.213425'
+- :station_id: 2
+  :restaurant: '井町日式蔬食-高鐵店'
+  :type: '素食餐廳'
+  :latitude: '24.8136763'
+  :longitude: '121.0280514'
+- :station_id: 3
+  :restaurant: '好來香牛肉麵'
+  :type: '中式麵食店'
+  :latitude: '24.5880828'
+  :longitude: '120.7931516'
+- :station_id: 4
+  :restaurant: '藍象廷泰式火鍋高鐵台中店'
+  :type: '餐廳'
+  :latitude: '24.1090934'
+  :longitude: '120.6012937'
+- :station_id: 5
+  :restaurant: '田中央豚將拉麵'
+  :type: '餐廳'
+  :latitude: '23.8665303'
+  :longitude: '120.4340923'
+- :station_id: 6
+  :restaurant: '樂晨Brunch'
+  :type: '早午餐餐廳'
+  :latitude: '23.7232038'
+  :longitude: '120.4063789'
+- :station_id: 7
+  :restaurant: '上好味 ─ 熱炒 · 麵食 · 私房套餐'
+  :type: '熟食店'
+  :latitude: '23.4608639'
+  :longitude: '120.2952915'
+- :station_id: 8
+  :restaurant: 'Roayl Host 樂雅樂家庭餐廳 - 台南高鐵店'
+  :type: '家庭餐廳'
+  :latitude: '22.9250134'
+  :longitude: '120.2832449'
+- :station_id: 9
+  :restaurant: '盜飯炙火烤肉定食'
+  :type: '餐廳'
+  :latitude: '22.6879366'
+  :longitude: '120.3076272'

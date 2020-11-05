@@ -3,7 +3,7 @@
 require 'roda'
 require 'slim'
 require_relative '../infrastructure/gateways/api'
-module THSR
+module THSRParking
   # Web App
   class App < Roda
     plugin :render, engine: 'slim', views: 'app/views'
