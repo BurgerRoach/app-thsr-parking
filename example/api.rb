@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'app/init'
+require_relative '../app/init'
 
 # api = THSR::Api.new
 # opts = {
