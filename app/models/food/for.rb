@@ -1,21 +1,21 @@
 # # frozen_string_literal: true
 
-# module THSR
-#   module Repository
-#     # Finds the right repository for an entity object or class
-#     class For
-#       ENTITY_REPOSITORY = {
-#         Entity::Project => Projects,
-#         Entity::Member => Members
-#       }.freeze
+module THSRParking
+  module THSR
+    # Finds the right food for an entity object or class
+    class For
+      ENTITY_FOOD = {
+        Entity::Restaurant => Restaurant,
+        Entity::Station => Station
+      }.freeze
 
-#       def self.klass(entity_klass)
-#         ENTITY_REPOSITORY[entity_klass]
-#       end
+      def self.klass(entity_klass)
+        ENTITY_FOOD[entity_klass]
+      end
 
-#       def self.entity(entity_object)
-#         ENTITY_REPOSITORY[entity_object.class]
-#       end
-#     end
-#   end
-# end
+      def self.entity(entity_object)
+        ENTITY_FOOD[entity_object.class]
+      end
+    end
+  end
+end

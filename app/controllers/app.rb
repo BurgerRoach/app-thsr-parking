@@ -3,6 +3,8 @@
 require 'roda'
 require 'slim'
 require_relative '../infrastructure/gateways/api'
+require_relative '../models/food'
+
 module THSRParking
   # Web App
   class App < Roda

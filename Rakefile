@@ -100,7 +100,7 @@ namespace :db do
   end
 end
 
-# desc 'Run application console (irb)'
-# task :console do
-#   sh 'irb -r ./init'
-# end
+desc 'Run application console (irb)'
+task :console do
+  sh 'irb -r ./init'
+end
