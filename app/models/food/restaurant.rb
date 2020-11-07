@@ -8,16 +8,15 @@ module THSRParking
         Database::RestaurantOrm.all.map { |db_restaurant| rebuild_entity(db_restaurant) }
       end
 
-    #   def self.find_full_name(owner_name, project_name)
-    #     # SELECT * FROM `projects` LEFT JOIN `members`
-    #     # ON (`members`.`id` = `projects`.`owner_id`)
-    #     # WHERE ((`username` = 'owner_name') AND (`name` = 'project_name'))
-    #     db_restaurant = Database::RestaurantOrm
-    #       .left_join(:members, id: :owner_id)
-    #       .where(username: owner_name, name: project_name)
-    #       .first
-    #     rebuild_entity(db_restaurant)
-    #   end
+      def self.find_full_name(station_name, restaurant_name)
+        # SELECT * FROM `projects` LEFT JOIN `members`
+        # ON (`members`.`id` = `projects`.`owner_id`)
+        # WHERE ((`username` = 'owner_name') AND (`name` = 'project_name'))
+        db_restaurant = Database::RestaurantOrm
+          .where(station: station_name, restaurant: restaurant_name)
+          .first
+        rebuild_entity(db_restaurant)
+      end
 
       def self.find(entity)
         find_restaurant(entity.restaurant)
@@ -73,8 +72,8 @@ module THSRParking
           create_restaurant.tap do |db_restaurant|
             db_restaurant.update(station_id: station_id)
 
-            @entity.contributors.each do |contributor|
-              db_project.add_contributor(Members.db_find_or_create(contributor))
+            @entity.restaurant.each do |restaurant|
+              db_project.add_restaurant(Station.db_find_or_create(restaurant))
             end
           end
         end

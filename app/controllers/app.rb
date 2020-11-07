@@ -50,7 +50,8 @@ module THSRParking
 
       # GET /
       r.root do
-        view 'home'
+        station = THSR::For.klass(Entity::Station).all
+        view 'home', locals: { station: station }
       end
 
       r.on 'result' do

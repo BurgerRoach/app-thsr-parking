@@ -3,7 +3,7 @@
 module THSRParking
   module THSR
     # Repository for Members
-    class Stations
+    class Station
       def self.find_station_name(station_name)
         rebuild_entity Database::StationOrm.first(stationName: station_name)
       end
