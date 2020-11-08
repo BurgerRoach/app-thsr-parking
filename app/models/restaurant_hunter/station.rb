@@ -4,6 +4,15 @@ module THSRParking
   module THSR
     # Repository for Members
     class Station
+      def self.find_station_retaurant(station_id)
+        db_station = Database::StationOrm.new
+          .join(:restaurant, station_id: :id)
+          .where(id: station_id)
+          .first
+        puts db_station
+        rebuild_entity(db_station)
+      end
+
       def self.find_station_name(station_name)
         rebuild_entity Database::StationOrm.first(stationName: station_name)
       end
@@ -15,8 +24,6 @@ module THSRParking
       def self.find_longitude(longitude)
         rebuild_entity Database::StationOrm.first(longitude: longitude)
       end
-
-      private
 
       def self.rebuild_entity(db_record)
         return nil unless db_record
