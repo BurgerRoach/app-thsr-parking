@@ -10,12 +10,12 @@ module THSRParking
       include Dry.Types
 
       # attribute :update_time,       Strict::String.optional
-      attribute :id,                Strict::String
+      attribute :id,                Strict::Integer
       attribute :station,           Strict::String
       attribute :latitude,          Strict::String
       attribute :longitude,         Strict::String
-      attribute :created_at,        Strict::String
-      attribute :updated_at,        Strict::String
+      # attribute :created_at,        Strict::String
+      # attribute :updated_at,        Strict::String
     end
   end
 end

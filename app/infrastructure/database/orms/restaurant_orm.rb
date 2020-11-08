@@ -2,6 +2,9 @@
 
 require 'sequel'
 
+# db_url = "sqlite://app/infrastructure/database/local/dev.db"
+# Sequel.connect(db_url)
+
 module THSRParking
   module Database
     # Object Relational Mapper for Restaurant

@@ -20,6 +20,12 @@ task :gateway_spec do
   puts 'Tests executed'
 end
 
+desc 'Run tests'
+task :database_spec do
+  sh 'ruby spec/gateway_database_spec.rb'
+  puts 'Tests executed'
+end
+
 desc 'Run example'
 task :example do
   sh 'ruby example/api.rb'
@@ -68,8 +74,6 @@ namespace :db do
     Sequel.extension :migration
     puts "Migrating #{app.environment} database to latest"
     Sequel::Migrator.run(app.DB, 'app/infrastructure/database/migrations')
-
-    # THSRParking::DatabaseScript::Stations.new.init
   end
 
   desc 'Insert init Stations data in database'
