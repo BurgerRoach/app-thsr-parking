@@ -1,8 +1,23 @@
 # frozen_string_literal: false
 
+require_relative '../config/environment'
+require_relative '../app/init'
 require_relative 'spec_helper'
-require_relative 'helpers/vcr_helper'
-require_relative 'helpers/database_helper'
+
+# require_relative 'helpers/vcr_helper'
+# require_relative 'helpers/database_helper'
+
+describe 'Tests THSRParking database' do
+  describe 'Search station information by station id' do
+    it 'HAPPY: should provide correct search information' do
+      result = THSRParking::RestaurantHunter::Stations.find_station_by_id('1')
+      puts result.to_h
+      _(result.to_h[:station]).must_equal '高鐵桃園站'
+    end
+  end
+end
+
+
 
 # describe 'Integration Tests of Github API and Database' do
 #   VcrHelper.setup_vcr
