@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative 'config/environment'
 require_relative 'app/init'
 
 ### test  RestaurantHunter Stations ###
@@ -13,8 +14,6 @@ puts result.to_h
 
 # test find_station_retaurant
 # result = THSRParking::RestaurantHunter::Stations.find_station_retaurant('1')
-
-
 
 ### test  RestaurantHunter Restaurants ###
 # test find restaurant by id
