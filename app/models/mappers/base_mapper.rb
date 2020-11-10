@@ -2,8 +2,8 @@
 
 require 'json'
 
-require_relative '../entities/single_park'
-require_relative '../entities/multi_park'
+# require_relative '../entities/single_park'
+# require_relative '../entities/multi_park'
 
 module THSRParking
   # Provides access to THSR park spacing data

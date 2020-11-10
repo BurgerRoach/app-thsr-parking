@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../infrastructure/database/orms/restaurant_orm'
+# require_relative '../../infrastructure/database/orms/restaurant_orm'
 
 module THSRParking
   module RestaurantHunter

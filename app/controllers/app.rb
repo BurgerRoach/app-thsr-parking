@@ -2,10 +2,6 @@
 
 require 'roda'
 require 'slim'
-require_relative '../infrastructure/gateways/api'
-require_relative '../models/restaurant_hunter/for'
-require_relative '../models/entities/station'
-require_relative '../models/entities/restaurant'
 
 module THSRParking
   # Web App

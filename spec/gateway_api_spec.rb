@@ -13,7 +13,7 @@ describe 'Tests THSR API library' do
   after do
     VcrHelper.eject_vcr
   end
-  
+
   describe 'Search real time inquiry information' do
     it 'HAPPY: should provide correct search information' do
       data = THSRParking::THSR::Api.new.search
