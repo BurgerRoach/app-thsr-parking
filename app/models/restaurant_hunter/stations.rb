@@ -16,6 +16,10 @@ module THSRParking
       #   # rebuild_entity(db_station)
       # end
 
+      def self.all
+        Database::StationOrm.all.map { |db_record| rebuild_entity(db_record) }
+      end
+
       def self.find_station_by_id(station_id)
         rebuild_entity Database::StationOrm.first(id: station_id)
       end

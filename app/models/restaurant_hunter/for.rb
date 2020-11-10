@@ -1,4 +1,9 @@
-# # frozen_string_literal: true
+# frozen_string_literal: true
+
+require_relative '../../models/entities/station'
+require_relative '../../models/entities/restaurant'
+require_relative '../../models/restaurant_hunter/restaurants'
+require_relative '../../models/restaurant_hunter/stations'
 
 module THSRParking
   module RestaurantHunter
