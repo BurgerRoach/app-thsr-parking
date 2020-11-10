@@ -4,4 +4,4 @@ coverage/*
 .DS_Store
 *.db
 .irb_history
-.bundle/
+.bundle
