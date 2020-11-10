@@ -61,6 +61,7 @@ GEM
     parser (2.7.2.0)
       ast (~> 2.4.1)
     path_expander (1.1.0)
+    pg (1.2.3)
     powerpack (0.0.9)
     psych (3.2.0)
     public_suffix (4.0.6)
@@ -124,6 +125,7 @@ DEPENDENCIES
   json
   minitest (~> 5.0)
   minitest-rg (~> 5.0)
+  pg
   puma (~> 3.11)
   rake
   reek
@@ -138,6 +140,9 @@ DEPENDENCIES
   sqlite3 (~> 1.4)
   vcr (~> 6.0)
   webmock (~> 3.0)
+
+RUBY VERSION
+   ruby 2.7.1p83
 
 BUNDLED WITH
    2.1.4
