@@ -4,8 +4,8 @@ require_relative '../config/environment'
 require_relative '../app/init'
 require_relative 'spec_helper'
 
-# require_relative 'helpers/vcr_helper'
-# require_relative 'helpers/database_helper'
+require_relative 'helpers/vcr_helper'
+require_relative 'helpers/database_helper'
 
 describe 'Tests THSRParking database' do
   describe 'Search station information by station id' do
