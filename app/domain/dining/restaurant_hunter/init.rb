@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'restaurants'
-require_relative 'stations'
-require_relative 'for'
+Dir.glob("#{File.dirname(__FILE__)}/*.rb").sort.each do |file|
+  require file
+end

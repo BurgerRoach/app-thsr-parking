@@ -3,12 +3,6 @@
 require 'net/http'
 require 'json'
 
-require_relative '../../models/utils/errors'
-require_relative '../../models/utils/options'
-require_relative '../../models/mappers/base_mapper'
-require_relative '../../models/mappers/city_mapper'
-require_relative '../../models/mappers/park_mapper'
-
 module THSRParking
   module THSR
     # Library for THSR API

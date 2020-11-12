@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-%w[values entities mappers]
+%w[utils values entities mappers]
   .each do |folder|
     require_relative "#{folder}/init"
   end
