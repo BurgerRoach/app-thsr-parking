@@ -16,6 +16,9 @@ module THSRParking
       attribute :type,              Strict::String
       attribute :latitude,          Strict::String
       attribute :longitude,         Strict::String
+      attribute :thumbsup,          Strict::Integer
+      attribute :thumbsdown,        Strict::Integer
+
       # attribute :created_at,        Strict::String
       # attribute :updated_at,        Strict::String
     end

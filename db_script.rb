@@ -16,7 +16,7 @@ puts stat.first
 
 # restaurants table
 restaurants = DB[:restaurants]
-puts restaurants.count
+puts restaurants.first
 
 # select restaurant = 新竹
 stat = restaurants.where(restaurant: '盜飯炙火烤肉定食')

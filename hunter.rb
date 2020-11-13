@@ -21,5 +21,21 @@ result = THSRParking::RestaurantHunter::Restaurants.find_restaurant_by_id('3')
 puts result.to_h
 
 # test find restaurant by name
-result = THSRParking::RestaurantHunter::Restaurants.find_restaurant_by_name('井町日式蔬食-高鐵店')
+result = THSRParking::RestaurantHunter::Restaurants.find_restaurant_by_name('盜飯炙火烤肉定食')
+puts result.to_h
+
+# test add thumbsup and return entity
+result = THSRParking::Value::Thumbsup.new(result).adds_up
+
+# test add thumbsdwon and return entity
+result = THSRParking::Value::Thumbsdown.new(result).adds_down
+
+# test change type and return entity
+result = THSRParking::Value::Type.new(result).change_type('烤肉')
+
+# test update thumbsup thumbsdown and type in database and return nothing
+THSRParking::RestaurantHunter::Restaurants.update_thumbs_type(result.id,result.thumbsdown,result.thumbsup,result.type)
+
+# find the same restaurant again to check whether it update in db
+result = THSRParking::RestaurantHunter::Restaurants.find_restaurant_by_name('盜飯炙火烤肉定食')
 puts result.to_h

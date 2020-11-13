@@ -25,6 +25,9 @@ module THSRParking
         rebuild_entity(db_restaurant)
       end
 
+      def self.update_thumbs_type(restaurant_id,thumbsdown,thumbsup,type)
+        Database::RestaurantOrm.first(id: restaurant_id).update(thumbsup: thumbsup,thumbsdown: thumbsdown,type: type)
+      end
       private
 
       def self.rebuild_entity(db_record)
@@ -39,7 +42,9 @@ module THSRParking
           restaurant: db_record.restaurant,
           type: db_record.type,
           latitude: db_record.latitude,
-          longitude: db_record.longitude
+          longitude: db_record.longitude,
+          thumbsup: db_record.thumbsup,
+          thumbsdown: db_record.thumbsdown
         )
       end
     end

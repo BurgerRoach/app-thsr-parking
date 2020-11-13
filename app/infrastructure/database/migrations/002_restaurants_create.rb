@@ -12,6 +12,8 @@ Sequel.migration do
       String      :type
       String      :latitude, null: false
       String      :longitude, null: false
+      Integer     :thumbsup
+      Integer     :thumbsdown
 
       DateTime    :created_at
       DateTime    :updated_at
