@@ -3,12 +3,6 @@
 require 'net/http'
 require 'json'
 
-require_relative '../../models/utils/errors'
-require_relative '../../models/utils/options'
-require_relative '../../models/mappers/base_mapper'
-require_relative '../../models/mappers/city_mapper'
-require_relative '../../models/mappers/park_mapper'
-
 module THSRParking
   module THSR
     # Library for THSR API
@@ -36,7 +30,8 @@ module THSRParking
         # @params options {hash}
         # @return {array-hash} the response data after filtered by city name
         filtered_data = search(options, 'dry')
-        JSON.parse(THSR::City.new(filtered_data, city).get.to_h.to_json)
+        THSR::City.new(filtered_data, city).get
+        # JSON.parse(THSR::City.new(filtered_data, city).get.to_h.to_json)
       end
 
       def search_by_park_id(park_id, options = {})
@@ -44,7 +39,8 @@ module THSRParking
         # @params options {hash}
         # @return {hash} the response data after filtered by park id
         filtered_data = search(options, 'dry')
-        JSON.parse(THSR::Park.new(filtered_data, park_id).get.to_h.to_json)
+        THSR::Park.new(filtered_data, park_id).get
+        # JSON.parse(THSR::Park.new(filtered_data, park_id).get.to_h.to_json)
       end
 
       private

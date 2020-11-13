@@ -21,8 +21,11 @@ module THSRParking
     def pass_park(park_id)
       api = THSRParking::THSR::Api.new
       data = api.search_by_park_id(park_id)
-      time = data['update_time']
-      parks = data['parks']
+      # time = data['update_time']
+      time = data.update_time
+
+      # parks = data['parks']
+      parks = data.parks
       view 'result', locals: { result: parks, time: time }
     end
 
@@ -37,8 +40,12 @@ module THSRParking
     def pass_city(city_name)
       api = THSRParking::THSR::Api.new
       data = api.search_by_city(city_name)
-      time = data['update_time']
-      parks = data['parks']
+      # time = data['update_time']
+      time = data.update_time
+
+      # parks = data['parks']
+      parks = data.parks
+
       view 'result', locals: { result: parks, time: time }
       # r.redirect "/result/city?city_name=#{city_name}"
     end
@@ -48,7 +55,7 @@ module THSRParking
 
       # GET /
       r.root do
-        station = THSRParking::RestaurantHunter::For.klass(Entity::Station).all
+        station = THSRParking::Repository::For.klass(Entity::Station).all
         view 'home', locals: { station: station }
       end
 

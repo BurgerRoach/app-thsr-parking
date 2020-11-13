@@ -14,24 +14,24 @@
     .row
       h3 style="padding-bottom:10px;"
         span.result.parks
-          = -items['name']
+          = -items.name
     .container
       .row style="padding-bottom:5px;"
         .col-lg-2.col-md-2.col-sm-2
           span.result.attribute 停車場ID:
         .col-lg-10.col-md-10.col-sm-6
           span.result.id
-            = - items['id']
+            = - items.id
       .row style="padding-bottom:5px;"
         .col-lg-2.col-md-2.col-sm-2
           span.result.attribute 總車位數:
         .col-lg-10.col-md-10.col-sm-6
           span.result.total_spaces
-            = items['total_spaces']
+            = items.total_spaces
       .row style="padding-bottom:5px;"
         .col-lg-2.col-md-2.col-sm-2
           span.result.attribute 剩餘車位數:
         .col-lg-10.col-md-10.col-sm-6
           span.result.available_spaces
-            = items['available_spaces']
+            = items.available_spaces
     

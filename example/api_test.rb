@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative '../config/environment'
 require_relative '../app/init'
 
 # api = THSR::Api.new
@@ -23,6 +24,8 @@ require_relative '../app/init'
 city = '台中'
 api = THSRParking::THSR::Api.new
 data = api.search_by_city(city)
+
+# city_park = THSRParking::Entity::MultiPark.new(update_time:data)
 parks = data['parks']
 puts data
 puts parks[0]['name']
