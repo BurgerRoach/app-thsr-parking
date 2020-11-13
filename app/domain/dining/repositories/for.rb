@@ -3,7 +3,7 @@ require_relative 'restaurants'
 require_relative 'stations'
 
 module THSRParking
-  module RestaurantHunter
+  module Repository
     # Finds the right food for an entity object or class
     class For
       ENTITY_HUNTER = {

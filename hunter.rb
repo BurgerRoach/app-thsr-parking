@@ -3,25 +3,25 @@
 require_relative 'config/environment'
 require_relative 'app/init'
 
-### test  RestaurantHunter Stations ###
+### test  Repository Stations ###
 # test find station by id
-result = THSRParking::RestaurantHunter::Stations.find_station_by_id('1')
+result = THSRParking::Repository::Stations.find_station_by_id('1')
 puts result.to_h
 
 # test find station by name
-result = THSRParking::RestaurantHunter::Stations.find_station_by_name('高鐵台中站')
+result = THSRParking::Repository::Stations.find_station_by_name('高鐵台中站')
 puts result.to_h
 
 # test find_station_retaurant
-# result = THSRParking::RestaurantHunter::Stations.find_station_retaurant('1')
+# result = THSRParking::Repository::Stations.find_station_retaurant('1')
 
-### test  RestaurantHunter Restaurants ###
+### test  Repository Restaurants ###
 # test find restaurant by id
-result = THSRParking::RestaurantHunter::Restaurants.find_restaurant_by_id('3')
+result = THSRParking::Repository::Restaurants.find_restaurant_by_id('3')
 puts result.to_h
 
 # test find restaurant by name
-result = THSRParking::RestaurantHunter::Restaurants.find_restaurant_by_name('盜飯炙火烤肉定食')
+result = THSRParking::Repository::Restaurants.find_restaurant_by_name('盜飯炙火烤肉定食')
 puts result.to_h
 
 # test add thumbsup and return entity
@@ -34,8 +34,8 @@ result = THSRParking::Value::Thumbsdown.new(result).adds_down
 result = THSRParking::Value::Type.new(result).change_type('烤肉')
 
 # test update thumbsup thumbsdown and type in database and return nothing
-THSRParking::RestaurantHunter::Restaurants.update_thumbs_type(result.id,result.thumbsdown,result.thumbsup,result.type)
+THSRParking::Repository::Restaurants.update_thumbs_type(result.id,result.thumbsdown,result.thumbsup,result.type)
 
 # find the same restaurant again to check whether it update in db
-result = THSRParking::RestaurantHunter::Restaurants.find_restaurant_by_name('盜飯炙火烤肉定食')
+result = THSRParking::Repository::Restaurants.find_restaurant_by_name('盜飯炙火烤肉定食')
 puts result.to_h

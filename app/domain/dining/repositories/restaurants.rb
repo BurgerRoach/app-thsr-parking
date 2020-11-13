@@ -3,7 +3,7 @@
 # require_relative '../../infrastructure/database/orms/restaurant_orm'
 
 module THSRParking
-  module RestaurantHunter
+  module Repository
     # Repository for Project Entities
     class Restaurants
       def self.all

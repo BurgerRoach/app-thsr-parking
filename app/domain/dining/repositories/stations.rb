@@ -4,7 +4,7 @@
 require_relative '../../parking/entities/station'
 
 module THSRParking
-  module RestaurantHunter
+  module Repository
     # Repository for Members
     class Stations
       # def self.find_station_retaurant(station_id)

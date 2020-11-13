@@ -48,7 +48,7 @@ module THSRParking
 
       # GET /
       r.root do
-        station = THSRParking::RestaurantHunter::For.klass(Entity::Station).all
+        station = THSRParking::Repository::For.klass(Entity::Station).all
         view 'home', locals: { station: station }
       end
 
