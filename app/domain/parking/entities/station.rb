@@ -6,19 +6,14 @@ require 'dry-struct'
 module THSRParking
   module Entity
     # Domain entity for any coding projects
-    class Restaurant < Dry::Struct
+    class Station < Dry::Struct
       include Dry.Types
 
-      # attribute :update_time,     Strict::String.optional
+      # attribute :update_time,       Strict::String.optional
       attribute :id,                Strict::Integer
-      attribute :station_id,        Strict::Integer
-      attribute :restaurant,        Strict::String
-      attribute :type,              Strict::String
+      attribute :station,           Strict::String
       attribute :latitude,          Strict::String
       attribute :longitude,         Strict::String
-
-      attribute :thumbsup,          Strict::Integer
-      attribute :thumbsdown,        Strict::Integer
       # attribute :created_at,        Strict::String
       # attribute :updated_at,        Strict::String
     end

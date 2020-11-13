@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-#require_relative '../utils/errors'
 
 module THSRParking
   # Provides access to THSR park spacing data
