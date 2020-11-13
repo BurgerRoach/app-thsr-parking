@@ -18,7 +18,13 @@ city = '新竹'
 temp = THSRParking::THSR::City.new(filtered_data, city).get
 result = THSRParking::Value::Remain.new(temp).nothing_left?
 
-puts result
+# puts result
+
+# test api.get
+# park_id = '2100'
+# data = api.search_by_park_id(park_id).get
+
+# puts data.update_time
 
 # filtered_data = api.search({}, 'dry')
 # temp_park = THSRParking::THSR::Park.new(filtered_data, park).get
