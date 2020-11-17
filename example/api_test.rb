@@ -26,6 +26,6 @@ api = THSRParking::THSR::Api.new
 data = api.search_by_city(city)
 
 # city_park = THSRParking::Entity::MultiPark.new(update_time:data)
-parks = data['parks']
+# parks = data['parks']
 puts data
 puts parks[0]['name']

@@ -9,9 +9,9 @@ module THSRParking
 
       def nothing_left?
         @entity.each do |obj|
-            return false if obj.available_spaces > 0
+          return false if obj.available_spaces > 0
         end
-        return true
+        true
       end
     end
   end

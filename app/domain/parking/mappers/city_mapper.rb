@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-
-
 module THSRParking
   # Provides access to THSR park spacing data
   module THSR

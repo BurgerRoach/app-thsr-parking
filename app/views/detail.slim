@@ -1,0 +1,38 @@
+section.thsr-detail-section
+  .ui.fluid.container
+    .ui.grid
+      .detail-map.eleven.wide.computer.column
+        #map.google-map
+      .detail-restaurants.five.wide.computer.column
+        - restaurants.each do |item|
+          .ui.card.restaurant-card
+            .image
+              img.card-img src="https://maps.googleapis.com/maps/api/place/photo?photoreference=#{item.photo_reference}&sensor=false&maxheight=600&maxwidth=800&key=AIzaSyCKFRjdZEMng_7iZGdqpVZTBnmQ2pkbans"
+            .content
+              .header = item.name
+              .meta
+                | Operating Status: 
+                = item.open_status
+              .card-vicinity
+                = item.vicinity
+            .content
+              .center.aligned
+                .ui.star.rating data-rating="#{item.rating.to_i}" data-max-rating="5"
+                span.card-rating-total-text
+                  | (#{item.user_ratings_total} votes)
+
+
+  
+javascript:
+  function initMap(){
+    let map = new google.maps.Map(document.getElementById("map"), {
+      center: { lat: #{park_location['lat']}, lng: #{park_location['lng']} },
+      zoom: 17
+    });
+
+    const marker = new google.maps.Marker({
+      map,
+      position: { lat: #{park_location['lat']}, lng: #{park_location['lng']} },
+      animation: google.maps.Animation.DROP,
+    });
+  }
