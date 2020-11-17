@@ -35,7 +35,7 @@ module THSRParking
             vicinity: @data['vicinity'],
             rating: @data['rating'].to_s,
             user_ratings_total: @data['user_ratings_total'],
-            photo_reference: @data['photos'][0]['photo_reference']
+            photo_reference: @data.key?('photos') ? @data['photos'][0]['photo_reference'] : ''
           )
         end
       end
