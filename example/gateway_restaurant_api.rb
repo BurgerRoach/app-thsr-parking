@@ -4,7 +4,7 @@ require_relative '../config/environment'
 require_relative '../app/init'
 
 # call api
-api_key = 'AIzaSyCKFRjdZEMng_7iZGdqpVZTBnmQ2pkbans'
+api_key = ENV['API_KEY']
 
 lat = '24.985175'
 lng = '121.440307'
