@@ -11,6 +11,7 @@
     color: black;
     line-height: 60px;
     font-weight: bold;
+    cursor: pointer;
   }
 }
 
@@ -143,4 +144,49 @@
     }
   }
 }
+
+
+// #map {
+//   height: 400px;
+//   width: 100%;
+// }
+
+// google map
+.thsr-detail-section {
+  .detail-map {
+    padding-right: 0 !important;
+
+    #map {
+      height: calc(90vh - 60px);
+      width: 100%;
+    }
+  }
+
+  .detail-restaurants {
+    padding-left: 0 !important;
+    overflow: auto;
+    height: calc(90vh - 60px);
+
+    .restaurant-card {
+      width: 70%;
+      margin: 0 auto;
+      margin-bottom: 25px;
+
+      .card-img {
+        height: 150px;
+        width: 100%;
+      }
+
+      .card-vicinity {
+        margin-top: 15px;
+      }
+
+      .card-rating-total-text {
+        margin-left: 5px;
+        font-size: 0.625rem;
+      }
+    }
+  }
+}
+
 

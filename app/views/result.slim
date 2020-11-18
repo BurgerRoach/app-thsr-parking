@@ -1,36 +1,36 @@
 section.thsr-result-section
   .ui.grid.container
-    - result.each do |items|
+    - result.each do |item|
       .four.wide.computer.sixteen.mobile.column
-        .ui.card.link.thsr-park-result-card
+        .ui.card.link.thsr-park-result-card id = item.id
           .content
-            .header = items.name
+            .header = item.name
             .meta 
               | Park id: 
-              = items.id
+              = item.id
           .content
             .sub-header
               | service status
               .summary
-                - if items.service_status == 0 or items.service_status == 2
+                - if item.service_status == 0 or item.service_status == 2
                   .thsr-park-service Closed
-                - elsif items.service_status == 1
+                - elsif item.service_status == 1
                   .thsr-park-service.status-open Opened
             .sub-header
               | charge status
               .summary
-                - if items.service_status == 0
+                - if item.service_status == 0
                   .thsr-park-service No charge
-                - elsif items.service_status == 1
+                - elsif item.service_status == 1
                   .thsr-park-service Normal charge
-                - elsif items.service_status == 2
+                - elsif item.service_status == 2
                   .thsr-park-service Suspended charge
           .content
             .sub-header
               | remain
               .summary.thsr-park-remain 
                 .ramain-available
-                  = items.available_spaces
+                  = item.available_spaces
                 | / 
                 .ramain-total
-                  = items.total_spaces
+                  = item.total_spaces
