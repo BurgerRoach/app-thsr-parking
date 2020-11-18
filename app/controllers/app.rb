@@ -64,7 +64,7 @@ module THSRParking
       puts park_location
 
       # to detail page
-      api_key = 'AIzaSyCKFRjdZEMng_7iZGdqpVZTBnmQ2pkbans'
+      api_key = ENV['API_KEY']
 
       lat = park_location['lat']
       lng = park_location['lng']

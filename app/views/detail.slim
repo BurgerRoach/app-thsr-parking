@@ -7,7 +7,7 @@ section.thsr-detail-section
         - restaurants.each do |item|
           .ui.card.restaurant-card
             .image
-              img.card-img src="https://maps.googleapis.com/maps/api/place/photo?photoreference=#{item.photo_reference}&sensor=false&maxheight=600&maxwidth=800&key=AIzaSyCKFRjdZEMng_7iZGdqpVZTBnmQ2pkbans"
+              img.card-img src="https://maps.googleapis.com/maps/api/place/photo?photoreference=#{item.photo_reference}&sensor=false&maxheight=600&maxwidth=800&key=#{ENV['API_KEY']}"
             .content
               .header = item.name
               .meta
