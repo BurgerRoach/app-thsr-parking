@@ -2,13 +2,18 @@
 
 require 'roda'
 require 'slim'
+require 'slim/include'
 
 module THSRParking
   # Web App
   class App < Roda
+    include Errors
+
     plugin :render, engine: 'slim', views: 'app/views'
     plugin :assets, css: ['style.scss', 'basic.css'], js: ['index.js'], path: 'app/views/assets'
     plugin :halt
+    plugin :flash
+
 
     def to_park(route)
       r = route
@@ -84,6 +89,7 @@ module THSRParking
 
       # GET /
       r.root do
+        session[:watching] ||= []
         # station = THSRParking::Repository::For.klass(Entity::Station).all
         # view 'home', locals: { station: station }
         view 'home'
@@ -94,11 +100,15 @@ module THSRParking
       end
 
       r.on 'result' do
-        # GET /result/park/park_id
-        to_park(r)
-
-        # GET /result/city/city_name
-        to_city(r)
+        begin
+          # GET /result/park/park_id
+          to_park(r)
+          # GET /result/city/city_name
+          to_city(r)
+        rescue IDFormatError
+          flash[:error] = 'The ID format should be like "2500" 4 digit numbers'
+          r.redirect '/'
+        end
       end
 
       r.on 'detail' do
