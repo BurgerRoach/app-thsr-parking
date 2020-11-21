@@ -34,7 +34,7 @@ end
 
 desc 'Run example'
 task :example do
-  sh 'ruby example/api.rb'
+  sh 'ruby example/api_test.rb'
   puts 'Api Example executed'
 end
 

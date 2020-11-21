@@ -14,7 +14,6 @@ module THSRParking
     plugin :halt
     plugin :flash
 
-
     def to_park(route)
       r = route
       r.get 'park' do
@@ -29,7 +28,9 @@ module THSRParking
       time = data.update_time
       parks = data.parks
 
-      view 'result', locals: { result: parks, time: time }
+      view_parks = Views::Park.new(parks) # turn into view object
+
+      view 'result', locals: { result: view_parks, time: time }
     end
 
     def to_city(route)
@@ -46,7 +47,9 @@ module THSRParking
       time = data.update_time
       parks = data.parks
 
-      view 'result', locals: { result: parks, time: time }
+      view_parks = Views::Park.new(parks) # turn into view object
+
+      view 'result', locals: { result: view_parks, time: time }
     end
 
     # parking details: google map & restaurants
@@ -81,7 +84,9 @@ module THSRParking
 
       puts data
 
-      view 'detail', locals: { park_location: park_location, restaurants: data }
+      view_restaurants = Views::Restaurants.new(data) # turn into view object
+
+      view 'detail', locals: { park_location: park_location, restaurants: view_restaurants }
     end
 
     route do |r|
