@@ -2,6 +2,8 @@
 
 require 'roda'
 require 'econfig'
+require 'delegate'
+
 
 module THSRParking
   # Configuration for the App
@@ -11,6 +13,9 @@ module THSRParking
     extend Econfig::Shortcut
     Econfig.env = environment.to_s
     Econfig.root = '.'
+
+    use Rack::Session::Cookie, secret: config.SESSION_SECRET # Session
+
 
     configure :development, :test do
       ENV['DATABASE_URL'] = "sqlite://#{config.DB_FILENAME}"

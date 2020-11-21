@@ -27,6 +27,8 @@ group :test do
   gem 'simplecov', '~> 0'
   gem 'vcr', '~> 6.0'
   gem 'webmock', '~> 3.0'
+  gem 'headless', '~> 2.3'
+  gem 'watir', '~> 6.17'
 end
 
 group :development, :test do
@@ -42,6 +44,7 @@ gem 'puma', '~> 3.11'
 gem 'roda', '~> 3.8'
 gem 'sassc'
 gem 'slim', '~> 3.0'
+gem 'rack', '~> 2' # 2.3 will fix delegateclass bug
 
 # Validation
 gem 'dry-struct', '~> 1.3'
