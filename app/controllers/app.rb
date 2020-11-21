@@ -9,8 +9,8 @@ module THSRParking
   class App < Roda
     include Errors
 
-    plugin :render, engine: 'slim', views: 'app/views'
-    plugin :assets, css: ['style.scss', 'basic.css'], js: ['index.js'], path: 'app/views/assets'
+    plugin :render, engine: 'slim', views: 'app/presentation/views_html'
+    plugin :assets, css: ['style.scss', 'basic.css'], js: ['index.js'], path: 'app/presentation/assets'
     plugin :halt
     plugin :flash
 

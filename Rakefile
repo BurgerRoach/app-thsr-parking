@@ -8,6 +8,12 @@ task :default do
   puts `rake -T`
 end
 
+desc 'Run acceptance tests'
+task :spec_accept do
+  puts 'NOTE: run `rake run:test` in another process'
+  sh 'ruby spec/acceptance_spec_.rb'
+end
+
 desc 'Run tests'
 task :spec do
   sh 'ruby spec/api_spec.rb'
