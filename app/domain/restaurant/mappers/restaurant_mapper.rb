@@ -23,6 +23,7 @@ module THSRParking
       class DataMapper
         def initialize(data)
           @data = data
+          @data['user_ratings_total'] ||= 0
         end
 
         def build_entity
