@@ -9,11 +9,10 @@ module THSRParking
   class App < Roda
     include Errors
 
-    plugin :render, engine: 'slim', views: 'app/views'
-    plugin :assets, css: ['style.scss', 'basic.css'], js: ['index.js'], path: 'app/views/assets'
+    plugin :render, engine: 'slim', views: 'app/presentation/views_html'
+    plugin :assets, css: ['style.scss', 'basic.css'], js: ['index.js'], path: 'app/presentation/assets'
     plugin :halt
     plugin :flash
-
 
     def to_park(route)
       r = route
@@ -29,7 +28,9 @@ module THSRParking
       time = data.update_time
       parks = data.parks
 
-      view 'result', locals: { result: parks, time: time }
+      view_parks = Views::Park.new(parks) # turn into view object
+
+      view 'result', locals: { result: view_parks, time: time }
     end
 
     def to_city(route)
@@ -46,7 +47,9 @@ module THSRParking
       time = data.update_time
       parks = data.parks
 
-      view 'result', locals: { result: parks, time: time }
+      view_parks = Views::Park.new(parks) # turn into view object
+
+      view 'result', locals: { result: view_parks, time: time }
     end
 
     # parking details: google map & restaurants
@@ -81,7 +84,9 @@ module THSRParking
 
       puts data
 
-      view 'detail', locals: { park_location: park_location, restaurants: data }
+      view_restaurants = Views::Restaurant.new(data) # turn into view object
+
+      view 'detail', locals: { park_location: park_location, restaurants: view_restaurants }
     end
 
     route do |r|
