@@ -38,6 +38,12 @@ task :example do
   puts 'Api Example executed'
 end
 
+desc 'Run example'
+task :view_test do
+  sh 'ruby example/view_test.rb'
+  puts 'View object test Example executed'
+end
+
 namespace :quality do
   desc 'Check Flog'
   task :flog do

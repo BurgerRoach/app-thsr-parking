@@ -7,6 +7,10 @@ module Views
       @park = park
     end
 
+    def entity
+      @park
+    end
+
     def id
       @park.id
     end
