@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
+require_relative '../config/environment'
+require_relative '../app/init'
+
+require_relative 'spec_helper'
 require_relative 'helpers/database_helper'
 require_relative 'helpers/vcr_helper'
+
 require 'headless'
 require 'watir'
 
@@ -19,13 +24,13 @@ describe 'Acceptance Tests' do
     @headless.destroy
   end
 
-  # describe 'Homepage' do
-  #   describe 'Visti homepage' do
-  #     it '(HAPPY) should see basic layout' do
-  #       @browser.goto 'https://thsr-parking.herokuapp.com/'
+  describe 'Homepage' do
+    describe 'Visti homepage' do
+      it '(HAPPY) should see basic layout' do
+        @browser.goto 'https://thsr-parking.herokuapp.com/'
 
-  #       _(@browser.span.text).must_equal 'THSR Parking'
-  #     end
-  #   end
-  # end
+        _(@browser.span.text).must_equal 'THSR Parking'
+      end
+    end
+  end
 end

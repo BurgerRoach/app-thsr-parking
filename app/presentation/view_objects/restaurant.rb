@@ -7,6 +7,12 @@ module Views
       @restaurant = restaurant
     end
 
+    def each
+      @restaurant.each do |item|
+        yield item
+      end
+    end
+
     def entity
       @restaurant
     end
@@ -39,7 +45,7 @@ module Views
       @restaurant.rating
     end
 
-    def ratings_total
+    def user_ratings_total
       @restaurant.user_ratings_total
     end
 

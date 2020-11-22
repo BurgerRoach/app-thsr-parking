@@ -84,7 +84,7 @@ module THSRParking
 
       puts data
 
-      view_restaurants = Views::Restaurants.new(data) # turn into view object
+      view_restaurants = Views::Restaurant.new(data) # turn into view object
 
       view 'detail', locals: { park_location: park_location, restaurants: view_restaurants }
     end

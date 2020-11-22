@@ -40,7 +40,7 @@ end
 
 desc 'Run example'
 task :view_test do
-  sh 'ruby example/view_test.rb'
+  sh 'ruby example/view_object.rb'
   puts 'View object test Example executed'
 end
 

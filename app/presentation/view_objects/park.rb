@@ -7,6 +7,12 @@ module Views
       @park = park
     end
 
+    def each
+      @park.each do |item|
+        yield item
+      end
+    end
+
     def entity
       @park
     end
