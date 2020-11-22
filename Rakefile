@@ -76,14 +76,12 @@ namespace :db do
     Sequel::Migrator.run(app.DB, 'app/infrastructure/database/migrations')
   end
 
-  desc 'Insert init Stations data in database'
+  desc 'Insert init Parks data in database'
   task :init_data => :config do
-    require_relative 'app/infrastructure/database/scripts/station_script'
-    require_relative 'app/infrastructure/database/scripts/restaurant_script'
+    require_relative 'app/infrastructure/database/scripts/park_script'
 
-    THSRParking::DatabaseScript::Stations.new.init
-    THSRParking::DatabaseScript::Restaurants.new.init
-    puts "Successfully init stations & restaurants data in #{app.environment} database to latest"
+    THSRParking::DatabaseScript::Parks.new.init
+    puts "Successfully init parks data in #{app.environment} database to latest"
   end
 
   desc 'Wipe records from all tables'

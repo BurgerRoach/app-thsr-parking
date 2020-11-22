@@ -53,31 +53,32 @@ module THSRParking
     def to_detail(route)
       # park lat&lng
       park_id = route.params['park_id']
+      result = THSRParking::Repository::Locations.find_park_by_id(park_id)
       park_location = {
-        'lat': '',
-        'lng': ''
+        'lat': result.latitude,
+        'lng': result.longitude
       }
 
-      if park_id == '2500'
-        park_location['lat'] = '24.6052312'
-        park_location['lng'] = '120.8239884'
-      elsif park_id == '2400'
-        park_location['lat'] = '24.8063625'
-        park_location['lng'] = '121.037736'
-      end
+      # if park_id == '2500'
+      #   park_location['lat'] = '24.6052312'
+      #   park_location['lng'] = '120.8239884'
+      # elsif park_id == '2400'
+      #   park_location['lat'] = '24.8063625'
+      #   park_location['lng'] = '121.037736'
+      # end
 
-      puts park_location
+      # puts park_location
 
       # to detail page
       api_key = ENV['API_KEY']
 
-      lat = park_location['lat']
-      lng = park_location['lng']
+      # lat = park_location['lat']
+      # lng = park_location['lng']
       radius = '1000'
       type = 'restaurant'
 
       api = THSRParking::GoogleMap::Api.new(api_key)
-      data = api.nearby_search(lat, lng, radius, type)
+      data = api.nearby_search(result.latitude, result.longitude, radius, type)
 
       puts data
 

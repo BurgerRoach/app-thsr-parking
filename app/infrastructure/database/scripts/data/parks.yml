@@ -1,0 +1,11 @@
+---
+- :park_origin_id: '2500'
+  :latitude: '24.6052312'
+  :longitude: '120.8239884'
+  :city: '苗栗'
+  :name: '高鐵苗栗站戶外平面停車場(P1)'
+- :park_origin_id: '2400'
+  :latitude: '24.8063625'
+  :longitude: '121.037736'
+  :city: '新竹'
+  :name: '高鐵新竹站P1汽車停車場'
