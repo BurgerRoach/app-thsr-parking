@@ -20,12 +20,19 @@ section.thsr-detail-section
                 .ui.star.rating data-rating="#{item.rating.to_i}" data-max-rating="5"
                 span.card-rating-total-text
                   | (#{item.user_ratings_total} votes)
+            .card-data
+              .name #{item.name}
+              .vicinity #{item.vicinity}
+              .latitude #{item.latitude}
+              .longtitude #{item.longtitude}
 
 
-  
+
 javascript:
-  function initMap(){
-    let map = new google.maps.Map(document.getElementById("map"), {
+  var map;
+
+  function initMap() {
+    map = new google.maps.Map(document.getElementById("map"), {
       center: { lat: #{park_location[:lat]}, lng: #{park_location[:lng]} },
       zoom: 17
     });
@@ -36,3 +43,41 @@ javascript:
       animation: google.maps.Animation.DROP,
     });
   }
+
+
+  $(function() {
+    $(".restaurant-card").click((event) => {
+      let target = event.currentTarget;
+      let dataDom = $(target).find('.card-data')[0];
+
+      // get name
+      let nameDom = $(dataDom).find('.name')[0];
+      let nameValue = $(nameDom).text();
+
+      // get vicinity
+      let vicinityDom = $(dataDom).find('.vicinity')[0];
+      let vicinityValue = $(vicinityDom).text();
+
+      // get lat
+      let latDom = $(dataDom).find('.latitude')[0];
+      let latValue = $(latDom).text();
+      
+      // get lng
+      let lngDom = $(dataDom).find('.longtitude')[0];
+      let lngValue = $(lngDom).text();
+
+      // mark on googlemap
+      let marker = new google.maps.Marker({
+        map,
+        position: { lat: parseFloat(latValue), lng: parseFloat(lngValue) },
+        animation: google.maps.Animation.DROP,
+      });
+
+      let content_html = '<b>'+ nameValue +'</b> <div>'+ vicinityValue +'</div>'
+      let infowindow = new google.maps.InfoWindow({
+        content: content_html
+      });
+      infowindow.open(map, marker);
+    });
+  });
+

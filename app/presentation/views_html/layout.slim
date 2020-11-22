@@ -19,18 +19,6 @@ html
     / link rel='stylesheet' href='/assets/css/bsic.css'
     / link rel='stylesheet' href='/assets/css/style.css'
     == assets(:css)
-  body
-    header.thsr-header
-      .header-logo
-        span  THSR Parking
-    
-    .thsr-body
-      include :flash_bar
-      == yield
-
-    footer.thsr-footer
-      span THSR Parking @ 2020
-    
 
     / import js
     / JQuery
@@ -44,6 +32,18 @@ html
     script{
       src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"
     }
+  body
+    header.thsr-header
+      .header-logo
+        span  THSR Parking
+    
+    .thsr-body
+      include :flash_bar
+      == yield
+
+    footer.thsr-footer
+      span THSR Parking @ 2020
+    
 
     / Google Map
     script {
