@@ -24,3 +24,8 @@ require_relative '../app/models/restaurant_hunter/stations'
 
 # CASSETTES_FOLDER = 'spec/fixtures/cassettes'
 # CASSETTE_FILE = 'thsr_api'
+
+# Helper methods
+def homepage
+    THSRParking::App.config.APP_HOST
+end
