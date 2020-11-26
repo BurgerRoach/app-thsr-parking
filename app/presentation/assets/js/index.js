@@ -54,4 +54,12 @@ $(function(){
   //   $(this).rating('disable');
   // });
   $('.ui.rating').rating('disable');
+
+  $('.message .close')
+  .on('click', function() {
+    $(this)
+      .closest('.message')
+      .transition('fade')
+    ;
+  });
 });
