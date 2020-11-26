@@ -9,7 +9,6 @@ module THSRParking
   module Database
     # Object-Relational Mapper for Station
     class ParkOrm < Sequel::Model(:parks)
-
       plugin :timestamps, update_on_create: true
 
       def self.find_or_create(park_info)
