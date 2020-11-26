@@ -17,6 +17,11 @@ module THSRParking
     def to_park(route)
       r = route
       r.get 'park' do
+        parkid_format = THSRParking::Forms::IDFormat.new.call(r.params)
+        if parkid_format.failure?
+          flash[:error] = 'The ID format should be like "2500" 4 digit numbers'
+          r.redirect '/'
+        end
         park_id = r.params['park_id']
         pass_park(park_id)
       end
@@ -96,15 +101,17 @@ module THSRParking
       end
 
       r.on 'result' do
-        begin
-          # GET /result/park/park_id
-          to_park(r)
-          # GET /result/city/city_name
-          to_city(r)
-        rescue IDFormatError
-          flash[:error] = 'The ID format should be like "2500" 4 digit numbers'
-          r.redirect '/'
-        end
+        to_park(r)
+        to_city(r)
+        # begin
+        #   # GET /result/park/park_id
+        #   to_park(r)
+        #   # GET /result/city/city_name
+        #   to_city(r)
+        # rescue IDFormatError
+        #   flash[:error] = 'The ID format should be like "2500" 4 digit numbers'
+        #   r.redirect '/'
+        # end
       end
 
       r.on 'detail' do

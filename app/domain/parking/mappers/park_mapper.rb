@@ -12,7 +12,7 @@ module THSRParking
       end
 
       def get
-        raise Errors::IDFormatError if invalid_id_format?
+        # raise Errors::IDFormatError if invalid_id_format?
 
         select_by_id
 
@@ -25,12 +25,12 @@ module THSRParking
         @data_instance.parks.select! { |item| item.id == @park_id }
       end
 
-      def invalid_id_format?
-        id_format = /^\d{4}$/
-        return true unless id_format.match(@park_id)
+      # def invalid_id_format?
+      #   id_format = /^\d{4}$/
+      #   return true unless id_format.match(@park_id)
 
-        false
-      end
+      #   false
+      # end
     end
   end
 end
