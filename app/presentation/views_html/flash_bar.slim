@@ -3,3 +3,8 @@
     i class="close icon"
     div class="header"
       = flash[:error]
+- if flash[:notice]
+  div class="ui warning message" id="flash_bar_success"
+    i class="close icon"
+    div class="header"
+      = flash[:notice]
