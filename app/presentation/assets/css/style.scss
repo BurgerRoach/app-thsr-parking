@@ -16,13 +16,13 @@
 }
 
 .thsr-body {
-  min-height: calc(90vh - 60px);
+  min-height: calc(93vh - 60px);
 }
 
 /* thsr footer */
 .thsr-footer {
-  height: 10vh;
-  line-height: 10vh;
+  height: 7vh;
+  line-height: 7vh;
   text-align: center;
   font-size: 1rem;
   font-weight: bold;
@@ -34,13 +34,13 @@
 .thsr-jumbotron {
   /* md */
   @media screen and (min-width: 992px) {
-    height: calc( 90vh - 60px );
+    height: calc( 93vh - 60px );
   }
 
   .ui.grid {
     /* md */
     @media screen and (min-width: 992px) {
-      height: calc( 90vh - 60px );
+      height: calc( 93vh - 60px );
     }
   }
 
@@ -157,7 +157,7 @@
     padding-right: 0 !important;
 
     #map {
-      height: calc(90vh - 60px);
+      height: calc(93vh - 60px);
       width: 100%;
     }
   }
@@ -165,12 +165,13 @@
   .detail-restaurants {
     padding-left: 0 !important;
     overflow: auto;
-    height: calc(90vh - 60px);
+    height: calc(93vh - 60px);
 
     .restaurant-card {
       width: 70%;
       margin: 0 auto;
       margin-bottom: 25px;
+      cursor: pointer;
 
       .card-img {
         height: 150px;
@@ -184,6 +185,10 @@
       .card-rating-total-text {
         margin-left: 5px;
         font-size: 0.625rem;
+      }
+
+      .card-data {
+        display: none;
       }
     }
   }

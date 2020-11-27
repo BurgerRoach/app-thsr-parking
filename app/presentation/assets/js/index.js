@@ -1,4 +1,4 @@
-$(function(){
+$(function() {
   // header logo
   $(".header-logo").click(() => {
     window.location.href = '/';
