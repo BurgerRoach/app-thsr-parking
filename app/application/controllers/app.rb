@@ -17,20 +17,20 @@ module THSRParking
     def to_park(route)
       r = route
       r.get 'park' do
-        park_id = r.params['park_id']
-        pass_park(park_id)
+        parkid_format = THSRParking::Forms::IDFormat.new.call(r.params)
+        park_made = Service::ParkLeft.new.call(parkid_format)
+
+        if park_made.failure?
+          flash[:error] = park_made.failure
+          r.redirect '/'
+        end
+        # park_id = r.params['park_id']
+        # pass_park(park_id)
+        results = park_made.value!
+        flash.now[:notice] = 'No match result' if (results[:data].length == 0)
+        view_parks = Views::Park.new(results[:data]) # turn into view object
+        view 'result', locals: { result: view_parks, time: results[:time] }
       end
-    end
-
-    def pass_park(park_id)
-      api = THSRParking::THSR::Api.new
-      data = api.search_by_park_id(park_id)
-      time = data.update_time
-      parks = data.parks
-
-      view_parks = Views::Park.new(parks) # turn into view object
-
-      view 'result', locals: { result: view_parks, time: time }
     end
 
     def to_city(route)
@@ -47,6 +47,8 @@ module THSRParking
       time = data.update_time
       parks = data.parks
 
+      flash.now[:notice] = 'No match result' if (parks.length == 0)
+
       view_parks = Views::Park.new(parks) # turn into view object
 
       view 'result', locals: { result: view_parks, time: time }
@@ -56,36 +58,19 @@ module THSRParking
     def to_detail(route)
       # park lat&lng
       park_id = route.params['park_id']
-      result = THSRParking::Repository::Locations.find_park_by_id(park_id)
+      restaurant_made = Service::RestaurantAround.new.call({park_id:park_id})
+      if restaurant_made.failure?
+        flash[:error] = restaurant_made.failure
+        r.redirect '/'
+      end
+      results = restaurant_made.value!
+      flash.now[:notice] = 'No match result' if (results[:data].length == 0)
       park_location = {
-        'lat': result.latitude,
-        'lng': result.longitude
+        'lat': results[:lat],
+        'lng': results[:lng]
       }
 
-      # if park_id == '2500'
-      #   park_location['lat'] = '24.6052312'
-      #   park_location['lng'] = '120.8239884'
-      # elsif park_id == '2400'
-      #   park_location['lat'] = '24.8063625'
-      #   park_location['lng'] = '121.037736'
-      # end
-
-      # puts park_location
-
-      # to detail page
-      api_key = ENV['API_KEY']
-
-      # lat = park_location['lat']
-      # lng = park_location['lng']
-      radius = '1000'
-      type = 'restaurant'
-
-      api = THSRParking::GoogleMap::Api.new(api_key)
-      data = api.nearby_search(result.latitude, result.longitude, radius, type)
-
-      puts data
-
-      view_restaurants = Views::Restaurant.new(data) # turn into view object
+      view_restaurants = Views::Restaurant.new(results[:data]) # turn into view object
 
       view 'detail', locals: { park_location: park_location, restaurants: view_restaurants }
     end
@@ -106,15 +91,8 @@ module THSRParking
       end
 
       r.on 'result' do
-        begin
-          # GET /result/park/park_id
-          to_park(r)
-          # GET /result/city/city_name
-          to_city(r)
-        rescue IDFormatError
-          flash[:error] = 'The ID format should be like "2500" 4 digit numbers'
-          r.redirect '/'
-        end
+        to_park(r)
+        to_city(r)
       end
 
       r.on 'detail' do

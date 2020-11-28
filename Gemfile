@@ -38,13 +38,18 @@ end
 gem 'debase', '~> 0.2'
 gem 'ruby-debug-ide', '~> 0.7'
 
-# Web Application
+# Presentation Layer
 gem 'econfig', '~> 2.1'
 gem 'puma', '~> 3.11'
+gem 'rack', '~> 2' # 2.3 will fix delegateclass bug
 gem 'roda', '~> 3.8'
 gem 'sassc'
 gem 'slim', '~> 3.0'
-gem 'rack', '~> 2' # 2.3 will fix delegateclass bug
+
+# Controllers and Service
+gem 'dry-monads'
+gem 'dry-transaction'
+gem 'dry-validation'
 
 # Validation
 gem 'dry-struct', '~> 1.3'
