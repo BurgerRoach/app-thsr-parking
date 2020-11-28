@@ -19,28 +19,28 @@ $(function() {
   });
 
   // go search
-  let modeMapper = (text) => {
-    if (text == 'Park Id') {
-      return 'by_park_id'
-    } else if (text == 'City Name') {
-      return 'by_city_name'
-    }
-  }
+  // let modeMapper = (text) => {
+  //   if (text == 'Park Id') {
+  //     return 'by_park_id'
+  //   } else if (text == 'City Name') {
+  //     return 'by_city_name'
+  //   }
+  // }
 
-  $('.action-btn').click(() => {
-    let modeText = $('.ui.dropdown.label .text').text(); // Park Id or City Name
-    let mode = modeMapper(modeText);
-    console.log(mode);
+  // $('.action-btn').click(() => {
+  //   let modeText = $('.ui.dropdown.label .text').text(); // Park Id or City Name
+  //   let mode = modeMapper(modeText);
+  //   console.log(mode);
 
-    let searchText = $('.content-action input.action-input').val();
-    if (mode == 'by_park_id') {
-      baseUrl = '/result/park?park_id=';
-      window.location.href = baseUrl + searchText;
-    } else if (mode == 'by_city_name') {
-      baseUrl = '/result/city?city_name=';
-      window.location.href = baseUrl + searchText;
-    }
-  });
+  //   let searchText = $('.content-action input.action-input').val();
+  //   if (mode == 'by_park_id') {
+  //     baseUrl = '/result/park?park_id=';
+  //     window.location.href = baseUrl + searchText;
+  //   } else if (mode == 'by_city_name') {
+  //     baseUrl = '/result/city?city_name=';
+  //     window.location.href = baseUrl + searchText;
+  //   }
+  // });
 
   // result page click card func
   $(".thsr-park-result-card").click(function(event) {
