@@ -6,17 +6,55 @@
       .content-description This is a real time inquiry service for Taiwan High Speed Rail (HSR) parking spaces. Although it is just a small program, it should save the life of THSRers!
 
       .content-action
-        .ui.huge.labeled.action.input
-          .ui.dropdown.label
-            .text Park Id
-            i.dropdown.icon
-            .menu
-              .item Park Id
-              .item City Name
-          input.action-input placeholder="e.g. 2500" type="text" /
-          button.action-btn.ui.primary.button Search
+        button.action-btn.ui.primary.button Get Started
+
+        /.ui.huge.labeled.action.input
+        /  .ui.dropdown.label
+        /    .text Park Id
+        /    i.dropdown.icon
+        /    .menu
+        /      .item Park Id
+        /      .item City Name
+        /  input.action-input placeholder="e.g. 2500" type="text" /
+        /button.action-btn.ui.primary.button Search
 
         
     .jumbotron-art.seven.wide.computer.sixteen.wide.mobile.column
       .ui.image.art-image
         img src="https://i.imgur.com/8gzfpQC.jpg" /
+
+
+.thsr-station-section
+  .ui.container
+    .thsr-station-menu.ui.secondary.menu
+      a.item.active
+        | 桃園
+      a.item
+        | 新竹
+      a.item
+        | 苗栗
+      a.item
+        | 台中
+      a.item
+        | 彰化
+      a.item
+        | 雲林
+      a.item
+        | 嘉義
+      a.item
+        | 台南
+      a.item
+        | 左營
+
+  .ui.container
+    .thsr-station-content
+      .content-img-mask
+      img.station-img src="https://i.imgur.com/CBgoTja.jpg"
+
+      .content-action
+        .action-btn.ui.inverted.big.button Search
+      
+      .content-text
+        | 桃園高鐵站
+      .content-sub-text
+        | photo by 航空城青埔人

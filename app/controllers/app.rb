@@ -10,7 +10,7 @@ module THSRParking
     include Errors
 
     plugin :render, engine: 'slim', views: 'app/presentation/views_html'
-    plugin :assets, css: ['style.scss', 'basic.css'], js: ['index.js'], path: 'app/presentation/assets'
+    plugin :assets, css: ['style.scss', 'basic.css'], js: ['index.js', 'portal.js'], path: 'app/presentation/assets'
     plugin :halt
     plugin :flash
 
