@@ -8,10 +8,16 @@ task :default do
   puts `rake -T`
 end
 
-desc 'Run acceptance tests'
-task :spec_accept do
+desc 'Run home page acceptance tests'
+task :home_spec do
   puts 'NOTE: run `rake run:test` in another process'
-  sh 'ruby spec/acceptance_spec_.rb'
+  sh 'ruby spec/tests_acceptance/home_page_acceptance.rb'
+end
+
+desc 'Run result page acceptance tests'
+task :result_spec do
+  puts 'NOTE: run `rake run:test` in another process'
+  sh 'ruby spec/tests_acceptance/result_page_acceptance.rb'
 end
 
 desc 'Run tests'

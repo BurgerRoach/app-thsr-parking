@@ -37,7 +37,7 @@ describe 'Acceptance Tests' do
       # WHEN: user in the home page
       visit HomePage do |page|
         # THEN: they should see background image
-        _(page.check_image.exist?).must_equal? true
+        _(page.check_image.exist?).must_equal true
       end
     end
 
@@ -56,7 +56,8 @@ describe 'Acceptance Tests' do
       # WHEN: user in the home page
       visit HomePage do |page|
         # THEN: they should see active item
-        _(page.check_active_item.exist?).must_equal? true
+        _(page.check_active_item.exist?).must_equal true
       end
     end
+  end
 end

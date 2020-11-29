@@ -7,7 +7,7 @@ require 'headless'
 require 'watir'
 
 describe 'Acceptance Tests' do
-  include PageObject::PageFactory
+  include ResultPage::PageFactory
 
   DatabaseHelper.setup_database_cleaner
 
@@ -22,5 +22,14 @@ describe 'Acceptance Tests' do
     @headless.destroy
   end
 
-  
+  describe 'Visit Result page' do
+    it '(HAPPY) should show current result' do
+      # GIVEN: user press search button
+      # WHEN: user go to result page
+      visit ResultPage do |page|
+        # THEN: they should result
+        _(page.check_result.exist?).must_equal true
+      end
+    end
+  end 
 end
