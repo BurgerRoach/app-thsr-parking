@@ -2,49 +2,20 @@
 
 # Page object for home page
 class HomePage
-    include PageObject
+  include PageObject
 
-    page_url THSRParking::App.config.APP_HOST
+  page_url THSRParking::App.config.APP_HOST
 
-    button(:start_button, id: 'start')
-    button(:search_button, id: 'search')
-    img(:background_image, id: 'image')
+  button(:start_button, id: 'start')
+  button(:search_button, id: 'search')
+  img(:background_image, id: 'image')
+  a(:first_active_item, id: 'active_item')
 
-    def check_image
-        background_image
-    end
+  def check_image
+    background_image
+  end
 
-    # def first_project_row
-    #     projects_table_element.trs[1]
-    # end
-
-    # def first_project_delete
-    #     first_project_row.button(id: 'project[0].delete').click
-    # end
-
-    # def first_project_hover
-    #     first_project_row.hover
-    # end
-
-    # def first_project_highlighted?
-    #     first_project_row.style('background-color').eql? 'rgba(0, 0, 0, 0.075)'
-    # end
-
-    # def num_projects
-    #     projects_table_element.rows - 1
-    # end
-
-    # def add_new_project(remote_url)
-    #     self.url_input = remote_url
-    #     self.add_button
-    # end
-
-    # def listed_project(project)
-    #     {
-    #     owner: project.owner,
-    #     name: project.name_link_element.text,
-    #     remote_url: project.remote_url_element.text,
-    #     num_contributors: project.contributors.split(',').count
-    #     }
-    # end
+  def check_active_item
+    first_active_item
+  end
 end

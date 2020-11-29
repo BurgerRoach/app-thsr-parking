@@ -13,7 +13,7 @@ describe 'Acceptance Tests' do
 
   before do
     DatabaseHelper.wipe_database
-    # @headless = Headless.new
+    @headless = Headless.new
     @browser = Watir::Browser.new
   end
 
@@ -48,6 +48,15 @@ describe 'Acceptance Tests' do
         # THEN: they should see important buttons
         _(page.start_button_element.present?).must_equal true
         _(page.search_button_element.present?).must_equal true
+      end
+    end
+
+    it '(HAPPY) should see active item' do
+      # GIVEN: user go to homepage
+      # WHEN: user in the home page
+      visit HomePage do |page|
+        # THEN: they should see active item
+        _(page.check_active_item.exist?).must_equal? true
       end
     end
 end

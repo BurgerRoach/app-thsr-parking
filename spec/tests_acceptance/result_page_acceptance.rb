@@ -13,7 +13,7 @@ describe 'Acceptance Tests' do
 
   before do
     DatabaseHelper.wipe_database
-    # @headless = Headless.new
+    @headless = Headless.new
     @browser = Watir::Browser.new
   end
 
