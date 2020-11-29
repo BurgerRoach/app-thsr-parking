@@ -22,23 +22,32 @@ describe 'Acceptance Tests' do
     @headless.destroy
   end
 
-  describe 'Homepage' do
-    describe 'Visit homepage' do
-      it '(HAPPY) should see basic layout' do
-        # GIVEN: user is on the home page
-        @browser.goto 'http://localhost:9292/'
-        # THEN: they should see right logo
-        _(@browser.header(class: 'thsr-header').text).must_equal 'THSR Parking'
-      end
-
-      it '(HAPPY) should go to result page' do
-        # GIVEN: user is on the home page
-        @browser.goto 'http://localhost:9292/'
-        # WHEN: they user click search button
-        @browser.button(name: 'Search').click
-        # THEN: user should go to result page
-        @browser.url.include? 'result'
+  describe 'Visit Home page' do
+    it '(HAPPY) should connect to the right url' do
+      # GIVEN: user enter the url
+      # WHEN: go to the url
+      visit HomePage do |page|
+        # THEN: they should go to the THSRParking url
+        _(page.url).include? THSRParking
       end
     end
-  end
+
+    it '(HAPPY) should see background image' do
+      # GIVEN: user go to homepage
+      # WHEN: user in the home page
+      visit HomePage do |page|
+        # THEN: they should see background image
+        _(page.check_image.exist?).must_equal? true
+      end
+    end
+
+    it '(HAPPY) should see important buttons' do
+      # GIVEN: user go to homepage
+      # WHEN: user in the home page
+      visit HomePage do |page|
+        # THEN: they should see important buttons
+        _(page.start_button_element.present?).must_equal true
+        _(page.search_button_element.present?).must_equal true
+      end
+    end
 end

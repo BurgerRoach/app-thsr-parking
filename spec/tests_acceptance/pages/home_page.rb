@@ -6,26 +6,13 @@ class HomePage
 
     page_url THSRParking::App.config.APP_HOST
 
-    # div(:warning_message, id: 'flash_bar_danger')
-    # div(:success_message, id: 'flash_bar_success')
+    button(:start_button, id: 'start')
+    button(:search_button, id: 'search')
+    img(:background_image, id: 'image')
 
-    # h1(:title_heading, id: 'main_header')
-    # text_field(:url_input, id: 'url_input')
-    # button(:add_button, id: 'project_form_submit')
-    # table(:projects_table, id: 'projects_table')
-
-    # indexed_property(
-    #     :projects,
-    #     [
-    #     [:span, :owner,        { id: 'project[%s].owner' }],
-    #     [:a,    :http_url,     { id: 'project[%s].link' }],
-    #     [:span, :contributors, { id: 'project[%s].contributors' }]
-    #     ]
-    # )
-
-    # def first_project
-    #     projects[0]
-    # end
+    def check_image
+        background_image
+    end
 
     # def first_project_row
     #     projects_table_element.trs[1]
