@@ -1,7 +1,7 @@
 # frozen_string_literal: false
 
 require_relative '../helpers/spec_helper'
-require_relative '../helpers/helpers/vcr_helper'
+require_relative '../helpers/vcr_helper'
 
 
 describe 'Tests THSR API library' do
