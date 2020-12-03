@@ -1,7 +1,7 @@
 # frozen_string_literal: true
-
+# THSRParking::THSR::City
 module THSRParking
-  # Provides access to THSR park spacing data
+  # Provides access to THSR City
   module THSR
     # Data Mapper: THSR park spacing data -> SinglePark Entity
     class City
@@ -20,8 +20,11 @@ module THSRParking
 
       private
 
+      # def select_by_id
+      #   @data_instance.parks.select! { |item| item.city_id.include?(@city) }
+      # end
+
       def select_by_city
-        @city = '左營' if @city == '高雄'
         @data_instance.parks.select! { |item| item.name.include?(@city) }
       end
 
