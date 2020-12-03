@@ -41,8 +41,6 @@ module THSRParking
           )
         end
       end
-
-
     end
   end
 end

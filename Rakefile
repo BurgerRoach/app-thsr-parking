@@ -8,27 +8,43 @@ task :default do
   puts `rake -T`
 end
 
-desc 'Run acceptance tests'
-task :spec_accept do
-  puts 'NOTE: run `rake run:test` in another process'
-  sh 'ruby spec/acceptance_spec_.rb'
+desc 'Run unit and integration tests'
+Rake::TestTask.new(:spec) do |t|
+  t.pattern = 'spec/**/*_spec.rb'
+  t.warning = false
 end
+
+desc 'Run home page acceptance tests'
+Rake::TestTask.new(:spec_accept) do |t|
+  t.pattern = 'spec/tests_acceptance/*_acceptance.rb'
+  t.warning = false
+end
+# task :home_spec do
+#   puts 'NOTE: run `rake run:test` in another process'
+#   sh 'ruby spec/tests_acceptance/home_page_acceptance.rb'
+# end
+
+# desc 'Run result page acceptance tests'
+# task :result_spec do
+#   puts 'NOTE: run `rake run:test` in another process'
+#   sh 'ruby spec/tests_acceptance/result_page_acceptance.rb'
+# end
 
 desc 'Run tests'
 task :spec do
-  sh 'ruby spec/api_spec.rb'
+  sh 'ruby spec/tests_intergration/api_spec.rb'
   puts 'Tests executed'
 end
 
 desc 'Run tests'
 task :gateway_spec do
-  sh 'ruby spec/gateway_api_spec.rb'
+  sh 'ruby spec/test_unit/gateway_api_spec.rb'
   puts 'Tests executed'
 end
 
 desc 'Run tests'
 task :database_spec do
-  sh 'ruby spec/gateway_database_spec.rb'
+  sh 'ruby spec/tests_intergration/gateway_database_spec.rb'
   puts 'Tests executed'
 end
 
@@ -88,12 +104,16 @@ namespace :db do
     Sequel::Migrator.run(app.DB, 'app/infrastructure/database/migrations')
   end
 
-  desc 'Insert init Parks data in database'
+  desc 'Insert init Parks and City data in database'
   task :init_data => :config do
     require_relative 'app/infrastructure/database/scripts/park_script'
+    require_relative 'app/infrastructure/database/scripts/city_script'
 
     THSRParking::DatabaseScript::Parks.new.init
     puts "Successfully init parks data in #{app.environment} database to latest"
+
+    THSRParking::DatabaseScript::City.new.init
+    puts "Successfully init city data in #{app.environment} database to latest"
   end
 
   desc 'Wipe records from all tables'
