@@ -4,16 +4,13 @@ require 'sequel'
 
 Sequel.migration do
   change do
-    create_table(:parks) do
+    create_table(:city) do
       primary_key :id
-      # foreign_key :city_id
 
-      String      :park_origin_id, unique: true, null: false
-      String      :city_id, null: false
+      String      :city_id, unique: true, null: false
+      String      :name, null: false
       String      :latitude, null: false
       String      :longitude, null: false
-      String      :city, null: false
-      String      :name, null: false
       DateTime    :created_at
       DateTime    :updated_at
     end

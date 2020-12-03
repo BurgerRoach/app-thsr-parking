@@ -29,6 +29,7 @@ group :test do
   gem 'vcr', '~> 6.0'
   gem 'watir', '~> 6.17'
   gem 'webmock', '~> 3.0'
+  gem 'page-object', '~> 2.2'
 end
 
 group :development, :test do
