@@ -25,6 +25,7 @@ module THSRParking
       # end
 
       def select_by_city
+        @city = '左營' if @city == '高雄'
         @data_instance.parks.select! { |item| item.name.include?(@city) }
       end
 
