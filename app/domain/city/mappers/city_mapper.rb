@@ -8,6 +8,7 @@ module THSRParking
       def initialize(data_instance, city)
         @data_instance = data_instance # MultiPark instance
         @city = city
+        # @city_id = city_id
       end
 
       def get
@@ -15,13 +16,15 @@ module THSRParking
 
         select_by_city
 
+        # select_by_id
+
         @data_instance
       end
 
       private
 
       # def select_by_id
-      #   @data_instance.parks.select! { |item| item.city_id.include?(@city) }
+      #   @data_instance.parks.select! { |item| item.city_id.include?(@city_id) }
       # end
 
       def select_by_city
