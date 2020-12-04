@@ -50,7 +50,7 @@ $(function() {
     } else if (selectedStationName == '台南') {
       updateStationInfo('https://s.newtalk.tw/album/news/132/5b4d8ed78ed34.jpg', '台南高鐵站', '頭殼網');
     } else if (selectedStationName == '左營') {
-      updateStationInfo('https://upload.wikimedia.org/wikipedia/commons/c/cb/HSR_Zuoying_Station.JPG', '左營高鐵站', '維基百科');
+      updateStationInfo('https://upload.wikimedia.org/wikipedia/commons/c/cb/HSR_Zuoying_Station.JPG', '高雄高鐵站', '維基百科');
     }
   });
 
