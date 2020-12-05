@@ -82,6 +82,9 @@ module THSRParking
       # GET /
       r.root do
         session[:watching] ||= []
+
+        cities = Service::Cities.new.list
+        print cities
         # station = THSRParking::Repository::For.klass(Entity::Station).all
         # view 'home', locals: { station: station }
         view 'home'
