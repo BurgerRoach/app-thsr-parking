@@ -48,7 +48,7 @@ module THSRParking
       time = data.update_time
       parks = data.parks.push(*db_data.parks)
 
-      flash.now[:notice] = 'No match result' if (parks.length == 0)
+      flash.now[:notice] = 'No match result' if parks.length.zero?
 
       view_parks = Views::Park.new(parks) # turn into view object
 

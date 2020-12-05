@@ -38,7 +38,7 @@ $(function() {
     } else if (selectedStationName == '新竹') {
       updateStationInfo('https://storage.googleapis.com/smiletaiwan-cms-cwg-tw/article/201808/article-5b7a9d363047d.jpg', '新竹高鐵站', '微笑台灣');
     } else if (selectedStationName == '苗栗') {
-      updateStationInfo('https://lh3.googleusercontent.com/proxy/qy01p4VRPa8HiL9BRBkaWrJ7qqRcDarqp_vNZOR5K09SsqMMENx2hX4YhB_TvMsD_hj037nMK6rLPumYgFUVaB_GQ0yFR19x-99w29iNRo4ezfRgxA7eOvUg0LME6yMaaIfsZddrPQ', '苗栗高鐵站', '建築師雜誌');
+      updateStationInfo('https://m.thsrc.com.tw/ArticleContent/e8fc2123-2aaf-46ff-ad79-51d4002a1ef3/assets/639935cc-b08d-4efe-86a9-3dd9f68a0eb2.jpg', '苗栗高鐵站', '台灣高鐵');
     } else if (selectedStationName == '台中') {
       updateStationInfo('https://www.rb.gov.tw/public/files/artsinfo/1576133676-m3.jpg', '台中高鐵站', '交通部鐵道局');
     } else if (selectedStationName == '彰化') {
