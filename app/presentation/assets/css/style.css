@@ -1,0 +1,270 @@
+/* THSR Parking Style */
+/* thsr header */
+.thsr-header {
+  display: block;
+  height: 60px;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+.thsr-header .header-logo {
+  font-size: 1.5rem;
+  color: black;
+  line-height: 60px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.thsr-header .header-logo span {
+  display: block;
+  height: 60px;
+}
+
+.thsr-body {
+  height: calc(100vh - 40px);
+}
+
+/* thsr footer */
+.thsr-footer {
+  height: 7vh;
+  line-height: 7vh;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #616161;
+}
+
+/* jumbotron */
+.thsr-jumbotron {
+  /* md */
+}
+
+@media screen and (min-width: 992px) {
+  .thsr-jumbotron {
+    height: calc( 100vh - 40px);
+  }
+}
+
+.thsr-jumbotron .ui.grid {
+  /* md */
+}
+
+@media screen and (min-width: 992px) {
+  .thsr-jumbotron .ui.grid {
+    height: calc( 100vh - 40px);
+  }
+}
+
+.thsr-jumbotron .jumbotron-content {
+  height: 100%;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 70px;
+  margin-bottom: 80px;
+  /* md */
+}
+
+@media screen and (min-width: 992px) {
+  .thsr-jumbotron .jumbotron-content {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.thsr-jumbotron .jumbotron-content .content-title {
+  width: 90%;
+  font-size: 2.8rem;
+  line-height: 3rem;
+  padding-bottom: 30px;
+  font-weight: bold;
+  letter-spacing: 1.2px;
+}
+
+.thsr-jumbotron .jumbotron-content .content-description {
+  width: 85%;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  color: #424242;
+  word-spacing: 1.2px;
+  padding-bottom: 50px;
+}
+
+.thsr-jumbotron .jumbotron-content .content-action .action-btn {
+  border-radius: 70px !important;
+  padding-right: 50px;
+  padding-left: 50px;
+  text-align: center;
+  font-size: 1.5rem;
+  letter-spacing: 1.2px;
+}
+
+.thsr-jumbotron .jumbotron-art {
+  height: 100%;
+}
+
+.thsr-jumbotron .jumbotron-art .art-image {
+  height: 100%;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.thsr-station-section {
+  height: 100vh;
+}
+
+.thsr-station-section .thsr-station-menu {
+  height: 12vh;
+}
+
+.thsr-station-section .thsr-station-content {
+  width: 100%;
+  position: relative;
+}
+
+.thsr-station-section .thsr-station-content .station-img {
+  border-radius: 5px;
+  width: 100%;
+  height: 80vh;
+}
+
+.thsr-station-section .thsr-station-content .content-img-mask {
+  opacity: 0;
+  width: 100%;
+  height: 80vh;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+.thsr-station-section .thsr-station-content .content-action {
+  opacity: 0;
+  position: absolute;
+  left: calc(50% - 48px);
+  top: calc(50% - 18px);
+  z-index: 3;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+.thsr-station-section .thsr-station-content:hover .content-action, .thsr-station-section .thsr-station-content:hover .content-img-mask {
+  opacity: 1;
+}
+
+.thsr-station-section .thsr-station-content .content-text {
+  position: absolute;
+  right: 30px;
+  bottom: 45px;
+  z-index: 3;
+  color: white;
+  font-weight: bold;
+  font-size: 3rem;
+  letter-spacing: 0.2rem;
+}
+
+.thsr-station-section .thsr-station-content .content-sub-text {
+  position: absolute;
+  right: 30px;
+  bottom: 25px;
+  z-index: 3;
+  color: white;
+  font-weight: bold;
+  font-size: 0.5rem;
+  letter-spacing: 0.1rem;
+}
+
+/* thsr result */
+.thsr-result-section {
+  padding-top: 40px;
+}
+
+.thsr-result-section .thsr-park-result-card .thsr-park-service {
+  margin-bottom: 13px;
+  font-size: 18px;
+  color: #616161;
+}
+
+.thsr-result-section .thsr-park-result-card .status-open {
+  color: #4CAF50;
+}
+
+.thsr-result-section .thsr-park-result-card .status-close {
+  color: #F44336;
+}
+
+.thsr-result-section .thsr-park-result-card .thsr-park-remain {
+  padding-top: 10px;
+}
+
+.thsr-result-section .thsr-park-result-card .thsr-park-remain .ramain-available {
+  display: inline-block;
+  font-size: 30px;
+  margin-right: 5px;
+}
+
+.thsr-result-section .thsr-park-result-card .thsr-park-remain .ramain-total {
+  display: inline-block;
+  font-size: 15px;
+  margin-left: 5px;
+}
+
+.thsr-detail-section .detail-map {
+  padding-right: 0 !important;
+}
+
+.thsr-detail-section .detail-map #map {
+  height: calc(93vh - 60px);
+  width: 100%;
+}
+
+.thsr-detail-section .detail-restaurants {
+  padding-left: 0 !important;
+  overflow: auto;
+  height: calc(93vh - 60px);
+}
+
+.thsr-detail-section .detail-restaurants .restaurant-card {
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  cursor: pointer;
+}
+
+.thsr-detail-section .detail-restaurants .restaurant-card .card-img {
+  height: 150px;
+  width: 100%;
+}
+
+.thsr-detail-section .detail-restaurants .restaurant-card .card-vicinity {
+  margin-top: 15px;
+}
+
+.thsr-detail-section .detail-restaurants .restaurant-card .card-rating-total-text {
+  margin-left: 5px;
+  font-size: 0.625rem;
+}
+
+.thsr-detail-section .detail-restaurants .restaurant-card .card-data {
+  display: none;
+}
+/*# sourceMappingURL=style.css.map */

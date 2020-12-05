@@ -19,27 +19,27 @@ module THSRParking
         if result.nil?
           Failure("Error: Not found this park in database")
         else
-          Success(lat: result.latitude,lng: result.longitude)
+          Success(lat: result.latitude, lng: result.longitude)
         end
-      rescue StandardError => error
-        puts error.backtrace.join("\n")
+      rescue StandardError => e
+        puts e.backtrace.join("\n")
         Failure('Having trouble accessing the database')
       end
 
       def find_restaruant(input)
-        api_key = ENV['API_KEY']
         radius = '500'
         type = 'restaurant'
-        api = THSRParking::GoogleMap::Api.new(api_key)
-        data = api.nearby_search(input[:lat], input[:lng], radius, type)
+
+        data = GoogleMap::RestaurantMapper.nearby_search(input[:lat], input[:lng], radius, type)
         if data.nil?
           input[:data] = nil
         else
           input[:data] = data
         end
+
         Success(input)
-      rescue StandardError => error
-        Failure(error.to_s)
+      rescue StandardError => e
+        Failure(e.to_s)
       end
     end
   end

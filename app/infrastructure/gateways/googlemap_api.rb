@@ -7,15 +7,6 @@ module THSRParking
   module GoogleMap
     # Library for Google Map API
     class Api
-      include Errors
-      HTTP_ERROR = {
-        400 => Errors::BadRequest,
-        401 => Errors::Unauthorized,
-        404 => Errors::NotFound
-      }.freeze
-
-      API_URL = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json'
-
       def initialize(api_key)
         @api_key = api_key
       end
@@ -25,25 +16,45 @@ module THSRParking
         # @params lng {string} longtitude
         # @params radius {string} search radius
         # @params type {string} type of location e.g. restaurant
-        api_url = join_parameters(lat, lng, radius, type)
-        raw_data = call_api(api_url)
-        GoogleMap::Restaurant.new(raw_data).map
+        Request.new(@api_key).nearby_search(lat, lng, radius, type)
       end
 
-      private
+      class Request
+        API_URL = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json'
 
-      def join_parameters(lat, lng, radius, type)
-        "#{API_URL}?location=#{lat},#{lng}&radius=#{radius}&type=#{type}&key=#{@api_key}"
+        def initialize(api_key)
+          @api_key = api_key
+        end
+
+        def nearby_search(lat, lng, radius, type)
+          api_url = join_parameters(lat, lng, radius, type)
+
+          http_response = HTTP.get(api_url)
+          Response.new(http_response).tap do |response|
+            raise(response.error) unless response.http_error?
+          end
+        end
+
+        def join_parameters(lat, lng, radius, type)
+          "#{API_URL}?location=#{lat},#{lng}&radius=#{radius}&type=#{type}&key=#{@api_key}"
+        end
       end
 
-      def call_api(api_url)
-        uri = URI(api_url)
-        response = Net::HTTP.get_response(uri)
-        http_error?(response.code) ? JSON.parse(response.body) : raise(HTTP_ERROR[response.code])
-      end
+      class Response < SimpleDelegator
+        include Errors
+        HTTP_ERROR = {
+          400 => Errors::BadRequest,
+          401 => Errors::Unauthorized,
+          404 => Errors::NotFound
+        }.freeze
 
-      def http_error?(status_code)
-        HTTP_ERROR.keys.include?(status_code) ? false : true
+        def http_error?
+          HTTP_ERROR.keys.include?(code) ? false : true
+        end
+
+        def error
+          HTTP_ERROR[code]
+        end
       end
     end
   end

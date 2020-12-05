@@ -4,11 +4,10 @@ module THSRParking
   # Provides access to THSR City
   module THSR
     # Data Mapper: THSR park spacing data -> SinglePark Entity
-    class City
+    class CityMapper
       def initialize(data_instance, city)
         @data_instance = data_instance # MultiPark instance
         @city = city
-        # @city_id = city_id
       end
 
       def get

@@ -5,13 +5,14 @@ require 'dry-struct'
 
 module THSRParking
   module Entity
-    # Domain entity for any coding projects
+    # Domain entity for any city
     class City < Dry::Struct
       include Dry.Types
 
-      # attribute :update_time,       Strict::String.optional
       attribute :city_id,           Strict::String
       attribute :name,              Strict::String
+      attribute :latitude,          Strict::String
+      attribute :longitude,         Strict::String
     end
   end
 end
