@@ -4,7 +4,7 @@ require 'dry/transaction'
 
 module THSRParking
   module Service
-    # Retrieves array of all listed shop entities
+    # Service of city
     class Cities
       include Dry::Transaction
 

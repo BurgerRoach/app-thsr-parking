@@ -10,21 +10,23 @@ module THSRParking
   module THSR
     # Data Mapper: THSR park spacing data -> MultiPark Entity
     class BaseMapper
-      def initialize(raw_data, options)
-        @data = raw_data
+      def initialize(options = {})
         @options = options
-        @multi_park_instance = THSRParking::Entity::MultiPark.new(
-          update_time: raw_data['UpdateTime'], parks: []
-        )
       end
 
       def flatten
+        @data = THSR::Api.new.search.parse
+
+        multi_park_instance = THSRParking::Entity::MultiPark.new(
+          update_time: @data['UpdateTime'], parks: []
+        )
+
         @data['ParkingAvailabilities'].each do |item|
-          @multi_park_instance.parks.append(DataMapper.new(item).build_entity)
+          multi_park_instance.parks.append(DataMapper.new(item).build_entity)
         end
 
         filter_by_options if @options
-        @multi_park_instance
+        multi_park_instance
       end
 
       private

@@ -6,16 +6,15 @@ module THSRParking
   # Provides access to Google Places Restaurant data
   module GoogleMap
     # Data Mapper: Google Places Restaurant data -> Restaurant Entity
-    class Restaurant
-      def initialize(raw_data)
-        @data = raw_data
-      end
+    class RestaurantMapper
+      def self.nearby_search(lat, lng, radius, type)
+        @data = GoogleMap::Api.new(ENV['API_KEY']).nearby_search(lat, lng, radius, type).parse
 
-      def map
         result = []
-        @data['results'].each do |item|
+        @data['results'].map do |item|
           result.append(DataMapper.new(item).build_entity)
         end
+
         result
       end
 
@@ -24,7 +23,7 @@ module THSRParking
         def initialize(data)
           @data = data
           @data['user_ratings_total'] ||= 0
-          @data['vicinity'] ||= ""
+          @data['vicinity'] ||= ''
         end
 
         def build_entity
