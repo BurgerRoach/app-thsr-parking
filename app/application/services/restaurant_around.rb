@@ -28,7 +28,7 @@ module THSRParking
 
       def find_restaruant(input)
         api_key = ENV['API_KEY']
-        radius = '1000'
+        radius = '500'
         type = 'restaurant'
         api = THSRParking::GoogleMap::Api.new(api_key)
         data = api.nearby_search(input[:lat], input[:lng], radius, type)

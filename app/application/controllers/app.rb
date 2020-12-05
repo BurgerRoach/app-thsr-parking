@@ -43,9 +43,10 @@ module THSRParking
 
     def pass_city(city_name)
       api = THSRParking::THSR::Api.new
+      db_data = THSRParking::Repository::OtherParks.find_park_by_city(city_name)
       data = api.search_by_city(city_name)
       time = data.update_time
-      parks = data.parks
+      parks = data.parks.push(*db_data.parks)
 
       flash.now[:notice] = 'No match result' if (parks.length == 0)
 

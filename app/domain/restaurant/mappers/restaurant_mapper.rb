@@ -24,6 +24,7 @@ module THSRParking
         def initialize(data)
           @data = data
           @data['user_ratings_total'] ||= 0
+          @data['vicinity'] ||= ""
         end
 
         def build_entity

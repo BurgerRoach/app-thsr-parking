@@ -35,17 +35,17 @@ module THSRParking
         options_select_charge_status if @options.key?(:charge_status)
       end
 
-      def options_select_service_status
-        @multi_park_instance.parks.select! { |item| item.service_status == @options[:service_status] }
-      end
+      # def options_select_service_status
+      #   @multi_park_instance.parks.select! { |item| item.service_status == @options[:service_status] }
+      # end
 
-      def options_select_service_available_level
-        @multi_park_instance.parks.select! { |item| item.available_spaces >= @options[:service_available_level] }
-      end
+      # def options_select_service_available_level
+      #   @multi_park_instance.parks.select! { |item| item.available_spaces >= @options[:service_available_level] }
+      # end
 
-      def options_select_charge_status
-        @multi_park_instance.parks.select! { |item| item.charge_status == @options[:charge_status] }
-      end
+      # def options_select_charge_status
+      #   @multi_park_instance.parks.select! { |item| item.charge_status == @options[:charge_status] }
+      # end
 
       # Extracts entity specific elements from data structure
       class DataMapper
