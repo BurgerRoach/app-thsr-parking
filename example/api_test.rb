@@ -21,11 +21,12 @@ require_relative '../app/init'
 # pkl_city = api.search_by_city(city, opts)
 # puts "\n#{pkl_city}"
 
-city = '台中'
+city = '新竹'
 api = THSRParking::THSR::Api.new
 data = api.search_by_city(city)
+puts api
 
 # city_park = THSRParking::Entity::MultiPark.new(update_time:data)
 # parks = data['parks']
-puts data['parks']
+# puts data['parks']
 # puts parks[0]['name']

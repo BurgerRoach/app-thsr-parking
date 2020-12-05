@@ -12,6 +12,8 @@ module THSRParking
       # attribute :update_time,       Strict::String.optional
       attribute :city_id,           Strict::String
       attribute :name,              Strict::String
+      attribute :img_src,           Strict::String
+      attribute :credit,            Strict::String
     end
   end
 end

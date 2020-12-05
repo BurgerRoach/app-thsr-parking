@@ -3,7 +3,7 @@
 module THSRParking
   # Provides access to THSR City
   module THSR
-    # Data Mapper: THSR park spacing data -> SinglePark Entity
+    # Data Mapper
     class City
       def initialize(data_instance, city)
         @data_instance = data_instance # MultiPark instance
@@ -13,10 +13,10 @@ module THSRParking
 
       def get
         raise Errors::StrFormatError if invalid_city_format?
+        
+        # select_by_id
 
         select_by_city
-
-        # select_by_id
 
         @data_instance
       end
