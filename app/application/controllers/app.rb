@@ -3,6 +3,7 @@
 require 'roda'
 require 'slim'
 require 'slim/include'
+require 'json'
 
 module THSRParking
   # Web App
@@ -65,18 +66,17 @@ module THSRParking
 
       # GET /
       r.root do
-        session[:watching] ||= []
-
-        cities = Service::Cities.new.list
-        puts cities
-        
-        # station = THSRParking::Repository::For.klass(Entity::Station).all
-        # view 'home', locals: { station: station }
         view 'home'
       end
 
       r.on 'test' do
         view 'test'
+      end
+
+      r.on 'get_city' do
+        city = r.params['city_name']
+        station = Service::Cities.new.find(city).value!
+        return station.to_h.to_json
       end
 
       r.on 'result' do
