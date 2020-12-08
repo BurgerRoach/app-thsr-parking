@@ -8,6 +8,11 @@ module THSRParking
         Database::CityOrm.all.map { |db_city| rebuild_entity(db_city) }
       end
 
+      def self.find_city(city_name)
+        db_record = Database::CityOrm.where(name: city_name).first
+        rebuild_entity(db_record)
+      end
+
       private
 
       def self.rebuild_entity(db_record)
@@ -17,7 +22,9 @@ module THSRParking
           city_id: db_record.city_id,
           name: db_record.name,
           latitude: db_record.latitude,
-          longitude: db_record.longitude
+          longitude: db_record.longitude,
+          img_src: db_record.img_src,
+          credit: db_record.credit
         )
       end
     end
