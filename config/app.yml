@@ -1,7 +1,17 @@
 ---
 development:
-  DB_FILENAME: app/infrastructure/database/local/dev.db
+  # Infrastructure
+  API_HOST: http://localhost:9090
 
 test:
-  DB_FILENAME: app/infrastructure/database/local/test.db
+  # Infrastructure
+  API_HOST: http://localhost:9090
+
+app_test:
+  # Application
   APP_HOST: http://localhost:9000
+  API_HOST: http://localhost:9090
+
+production:
+  # Infrastructure
+  API_HOST: https://thsr-parking-api.herokuapp.com

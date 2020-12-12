@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-folders = %w[forms representers services controllers]
+folders = %w[utils gateway]
 folders.each do |folder|
   require_relative "#{folder}/init.rb"
 end
