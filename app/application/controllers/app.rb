@@ -51,14 +51,14 @@ module THSRParking
       end
       results = restaurant_made.value!
       # flash.now[:notice] = 'No match result' if results[:data].length.zero?
-      park_location = {
-        'lat': '25.01309',
-        'lng': '121.2152'
+      first_location = {
+        'lat': results[:restaurants][0].latitude,
+        'lng': results[:restaurants][0].longitude
       }
 
       view_restaurants = Views::Restaurant.new(results[:restaurants]) # turn into view object
 
-      view 'detail', locals: { park_location: park_location, restaurants: view_restaurants }
+      view 'detail', locals: { first_location: first_location, restaurants: view_restaurants }
     end
 
     route do |r|
