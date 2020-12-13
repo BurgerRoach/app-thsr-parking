@@ -31,6 +31,10 @@ module THSRParking
         @request.get_park_info(req)
       end
 
+      def restaurants_info(req)
+        @request.get_restaurants_info(req)
+      end
+
       # HTTP request transmitter
       class Request
         def initialize(config)
@@ -48,11 +52,15 @@ module THSRParking
         # end
 
         def get_park_info(req)
-          call_api('get', ['parks', req.id])
+          call_api('get', ['cities', req, 'parks'])
         end
 
         def get_city_info(req)
           call_api('get', ['cities'], {'city_name' => req})
+        end
+
+        def get_restaurants_info(req)
+          call_api('get', ['restaurants',req[:park_id]], {'radius' => req[:radius]})
         end
 
         private
