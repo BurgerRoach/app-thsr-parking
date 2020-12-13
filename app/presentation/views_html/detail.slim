@@ -33,13 +33,13 @@ javascript:
 
   function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
-      center: { lat: #{park_location[:lat]}, lng: #{park_location[:lng]} },
+      center: { lat: #{first_location[:lat]}, lng: #{first_location[:lng]} },
       zoom: 17
     });
 
     const marker = new google.maps.Marker({
       map,
-      position: { lat: #{park_location[:lat]}, lng: #{park_location[:lng]} },
+      position: { lat: #{first_location[:lat]}, lng: #{first_location[:lng]} },
       animation: google.maps.Animation.DROP,
     });
   }
