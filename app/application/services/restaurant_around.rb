@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'dry/transaction'
+require 'json'
 
 module THSRParking
   module Service
@@ -8,38 +9,27 @@ module THSRParking
     class RestaurantAround
       include Dry::Transaction
 
-      step :station_location
-      step :find_restaruant
+      step :request_parks
+      step :reify_list
 
       private
 
-      def station_location(input)
-        result = THSRParking::Repository::Locations.find_park_by_id(input[:park_id])
-
-        if result.nil?
-          Failure("Error: Not found this park in database")
-        else
-          Success(lat: result.latitude, lng: result.longitude)
-        end
-      rescue StandardError => e
-        puts e.backtrace.join("\n")
-        Failure('Having trouble accessing the database')
+      def request_parks(input)
+        Gateway::Api.new(THSRParking::App.config)
+          .restaurants_info(input)
+          .then do |result|
+            result.success? ? Success(result.payload) : Failure(result.message)
+          end
+      rescue StandardError
+        Failure('Could not access our API')
       end
 
-      def find_restaruant(input)
-        radius = '500'
-        type = 'restaurant'
-
-        data = GoogleMap::RestaurantMapper.nearby_search(input[:lat], input[:lng], radius, type)
-        if data.nil?
-          input[:data] = nil
-        else
-          input[:data] = data
-        end
-
-        Success(input)
-      rescue StandardError => e
-        Failure(e.to_s)
+      def reify_list(restaurants_json)
+        Representer::RestaurantsList.new(OpenStruct.new)
+          .from_json(restaurants_json)
+          .then { |restaurants| Success(restaurants) }
+      rescue StandardError
+        Failure('Could not parse response from API')
       end
     end
   end

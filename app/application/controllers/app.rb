@@ -24,39 +24,39 @@ module THSRParking
     end
 
     def pass_city(route, city_name)
-      parks_made = Service::Parks.new.find_park_by_city(city_name)
+      parks_made = Service::Parks.new.call(city_name)
 
       if parks_made.failure?
         flash[:error] = parks_made.failure
         route.redirect '/'
       end
 
-      parks, update_time = parks_made.value!
+      parks = parks_made.value!
 
       flash.now[:notice] = 'No match result' if parks.length.zero?
 
       view_parks = Views::Park.new(parks) # turn into view object
 
-      view 'result', locals: { result: view_parks, time: update_time }
+      view 'result', locals: { result: view_parks, time: "update_time" }
     end
 
     # parking details: google map & restaurants
     def to_detail(route)
       # park lat&lng
       park_id = route.params['park_id']
-      restaurant_made = Service::RestaurantAround.new.call({ park_id: park_id })
+      restaurant_made = Service::RestaurantAround.new.call({ park_id: park_id, radius: '500'})
       if restaurant_made.failure?
         flash[:error] = restaurant_made.failure
         route.redirect '/'
       end
       results = restaurant_made.value!
-      flash.now[:notice] = 'No match result' if results[:data].length.zero?
+      # flash.now[:notice] = 'No match result' if results[:data].length.zero?
       park_location = {
-        'lat': results[:lat],
-        'lng': results[:lng]
+        'lat': '25.01309',
+        'lng': '121.2152'
       }
 
-      view_restaurants = Views::Restaurant.new(results[:data]) # turn into view object
+      view_restaurants = Views::Restaurant.new(results[:restaurants]) # turn into view object
 
       view 'detail', locals: { park_location: park_location, restaurants: view_restaurants }
     end

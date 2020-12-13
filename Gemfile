@@ -47,6 +47,8 @@ gem 'rack', '~> 2' # 2.3 will fix delegateclass bug
 gem 'roda', '~> 3.8'
 gem 'sassc'
 gem 'slim', '~> 3.0'
+gem 'multi_json'
+gem 'roar'
 
 # Controllers and Service
 gem 'dry-monads'
@@ -65,4 +67,5 @@ group :development, :test do
 end
 
 # Utilities
+gem 'rack-test' # can also be used to diagnose production
 gem 'rake'

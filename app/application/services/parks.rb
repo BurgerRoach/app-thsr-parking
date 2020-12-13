@@ -7,22 +7,39 @@ module THSRParking
     # Service of park
     class Parks
       include Dry::Monads::Result::Mixin
+      include Dry::Transaction
 
-      def find_park_by_city(city_name)
-        # data from thsr api
-        raw_data = THSR::BaseMapper.new.flatten
-        data = THSR::CityMapper.new(raw_data, city_name).get
+      step :map_park
+      step :request_results
+      step :reify_results
+      private
 
-        # data from database
-        db_data = Repository::OtherParks.find_park_by_city(city_name)
+      def map_park(city_name)
+        city_map = {
+          '桃園' => '1','新竹' => '2','苗栗' => '3','台中' => '4','彰化' => '5','雲林' => '6', '嘉義' => '7', '台南' => '8', '高雄' => '9'
+        }
+        city_id = city_map[city_name]
+        Success(city_id)
+      rescue StandardError
+        Failure('City not found')
+      end
 
-        # merge data from thsr api data & database data
-        parks = data.parks.push(*db_data.parks)
-        update_time = data.update_time
+      def request_results(input)
+        Gateway::Api.new(THSRParking::App.config)
+          .park_info(input)
+          .then do |result|
+            result.success? ? Success(result.payload) : Failure(result.message)
+          end
+      rescue StandardError
+        Failure('Could not access our API')
+      end
 
-        Success([parks, update_time])
-      rescue StandardError => e
-        Failure(e.to_s)
+      def reify_results(parks_json)
+        Representer::ParksList.new(OpenStruct.new)
+          .from_json(parks_json)
+          .then { |parks| Success(parks['parks']) }
+      rescue StandardError
+        Failure('Could not parse response from API')
       end
     end
   end
