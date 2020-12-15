@@ -51,7 +51,7 @@ $(function() {
       updateStationInfo('https://www.thsrc.com.tw/ArticleContent/60831846-f0e4-47f6-9b5b-46323ebdcef7/assets/36c8f9a3-ebc6-4949-aa03-ec05626aef8b.jpg', '嘉義高鐵站', '台灣高鐵');
     } else if (selectedStationName == '台南') {
       updateStationInfo('https://s.newtalk.tw/album/news/132/5b4d8ed78ed34.jpg', '台南高鐵站', '頭殼網');
-    } else if (selectedStationName == '左營') {
+    } else if (selectedStationName == '高雄') {
       updateStationInfo('https://upload.wikimedia.org/wikipedia/commons/c/cb/HSR_Zuoying_Station.JPG', '高雄高鐵站', '維基百科');
     }
 
