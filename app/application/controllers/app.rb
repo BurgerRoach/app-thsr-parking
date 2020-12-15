@@ -50,7 +50,7 @@ module THSRParking
         route.redirect '/'
       end
       results = restaurant_made.value!
-      # flash.now[:notice] = 'No match result' if results[:data].length.zero?
+      flash.now[:notice] = 'No match result' if results[:restaurants].length.zero?
       first_location = {
         'lat': results[:restaurants][0].latitude,
         'lng': results[:restaurants][0].longitude
