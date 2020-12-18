@@ -31,6 +31,9 @@ group :test do
   gem 'watir', '~> 6.17'
   gem 'webmock', '~> 3.0'
   gem 'page-object', '~> 2.2'
+  gem 'chromedriver-helper'
+  gem 'webdrivers'
+  gem 'selenium-webdriver'
 end
 
 group :development, :test do

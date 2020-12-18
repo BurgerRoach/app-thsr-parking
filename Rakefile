@@ -19,6 +19,19 @@ Rake::TestTask.new(:spec_accept) do |t|
   t.pattern = 'spec/tests_acceptance/*_acceptance.rb'
   t.warning = false
 end
+
+desc 'Run tests'
+task :home_spec do
+  sh 'ruby spec/tests_acceptance/home_page_acceptance.rb'
+  puts 'Home_spec Tests executed'
+end
+
+desc 'Run tests'
+task :result_spec do
+  sh 'ruby spec/tests_acceptance/result_page_acceptance.rb'
+  puts 'Result_spec Tests executed'
+end
+
 # task :home_spec do
 #   puts 'NOTE: run `rake run:test` in another process'
 #   sh 'ruby spec/tests_acceptance/home_page_acceptance.rb'
