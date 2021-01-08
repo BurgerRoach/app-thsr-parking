@@ -11,7 +11,7 @@ module THSRParking
     class ParkResult < Roar::Decorator
       include Roar::JSON
 
-      property :result, extend: Representer::Park
+      property :result, extend: Representer::Park, class: OpenStruct
     end
   end
 end

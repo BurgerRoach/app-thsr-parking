@@ -12,6 +12,7 @@ module THSRParking
       step :map_park
       step :request_results
       step :reify_results
+
       private
 
       def map_park(input)
