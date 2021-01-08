@@ -31,6 +31,10 @@ module THSRParking
         @request.get_park_info(req)
       end
 
+      def timetable_info(req)
+        @request.get_timetable_info(req)
+      end
+
       def restaurants_info(req)
         @request.get_restaurants_info(req)
       end
@@ -59,9 +63,15 @@ module THSRParking
           call_api('get', ['cities'], {'city_name' => req})
         end
 
+        def get_timetable_info(req)
+          call_api('get', ['cities',req[:station_id],'timetable'], {'date' => req[:date], 'direction' => req[:direction]})
+        end
+
         def get_restaurants_info(req)
           call_api('get', ['restaurants',req[:park_id]], {'radius' => req[:radius]})
         end
+
+
 
         private
 
