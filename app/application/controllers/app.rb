@@ -25,13 +25,23 @@ module THSRParking
 
     def pass_city(route, city_name)
       parks_made = Service::Parks.new.call(city_name)
+      ### here need to replace with params
+      timetable_made = Service::Timetable.new.call({'city_name':city_name,'date':'2021-01-07','direction':'0'})
 
       if parks_made.failure?
         flash[:error] = parks_made.failure
         route.redirect '/'
       end
 
+      if timetable_made.failure?
+        flash[:error] = timetable_made.failure
+        route.redirect '/'
+      end
+
       parks = parks_made.value!
+      timetables = timetable_made.value!
+
+      puts timetables
 
       flash.now[:notice] = 'No match result' if parks.length.zero?
 
