@@ -44,5 +44,9 @@ module Views
     def charge_status
       @park.charge_status
     end
+
+    def average
+      @park.average
+    end
   end
 end

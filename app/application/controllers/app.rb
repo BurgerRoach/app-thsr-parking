@@ -41,8 +41,6 @@ module THSRParking
       parks = parks_made.value!
       timetables = timetable_made.value!
 
-      puts timetables
-
       flash.now[:notice] = 'No match result' if parks.length.zero?
 
       view_parks = Views::Park.new(parks) # turn into view object
