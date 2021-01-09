@@ -23,6 +23,7 @@ module THSRParking
       property :service_status
       property :full_status
       property :charge_status
+      property :average
     end
   end
 end
