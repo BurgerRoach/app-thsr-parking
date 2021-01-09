@@ -62,10 +62,16 @@ module THSRParking
       park_info_result = park_info.value!
 
       # get timetable
+      direction = route.params['direction']
+      direction = '0' if direction.nil?
+
+      direction_text = 'Southward'
+      direction_text = 'Northward' if direction == '1'
+
       timetable_made = Service::Timetable.new.call({
         'city_name': park_info_result['result']['city'],
         'date': Date.today,
-        'direction': '0'
+        'direction': direction
       })
 
       if timetable_made.failure?
@@ -95,6 +101,7 @@ module THSRParking
       restaurant_length = results[:restaurants].length
 
       view 'detail', locals: {
+        direction: direction_text,
         first_location: first_location,
         restaurants: view_restaurants,
         restaurant_length: restaurant_length,

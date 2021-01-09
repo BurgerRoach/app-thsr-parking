@@ -1,4 +1,8 @@
 section.thsr-detail-section
+  .ui.dimmer
+    .ui.text.loader Loading
+
+
   .ui.fluid.container
     .ui.grid
       .detail-map.twelve.wide.computer.column
@@ -6,11 +10,13 @@ section.thsr-detail-section
           .timetable-title
             | THSR Timetable &nbsp;&nbsp;
             = Date.today
+            | &nbsp;&nbsp;
+            = direction
 
             .train-direction
               .direction-btns.mini.ui.buttons
-                button.ui.button 北上
-                button.ui.button 南下
+                button.ui.button.direction-btn Northward
+                button.ui.button.direction-btn Southward
 
 
           .timetable-table
@@ -87,6 +93,24 @@ javascript:
 
 
   $(function() {
+    // direction
+    $(".direction-btn").click((event) => {
+      let target = event.currentTarget;
+      let directionText = $(target).text();
+
+      // loading
+      $(".ui.dimmer").addClass('active');
+      
+      // map direction text to value
+      let directionValue = '0';
+      if (directionText == 'Northward') directionValue = '1';
+
+      // redirect
+      let currentUrl = location.href.split('&')[0];
+      window.location.href = currentUrl + '&' + 'direction=' + directionValue;
+    });
+
+    // restaurant card
     $(".restaurant-card").click((event) => {
       let target = event.currentTarget;
       let dataDom = $(target).find('.card-data')[0];
