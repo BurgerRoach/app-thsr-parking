@@ -2,7 +2,7 @@
 development:
   # Infrastructure
   APP_HOST: http://localhost:9292
-  API_HOST: http://localhost:9090
+  API_HOST: https://thsr-parking-api.herokuapp.com
 
 test:
   # Infrastructure

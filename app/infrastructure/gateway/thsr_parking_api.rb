@@ -31,6 +31,10 @@ module THSRParking
         @request.get_park_info(req)
       end
 
+      def one_park_info(req)
+        @request.get_one_park_info(req)
+      end
+
       def timetable_info(req)
         @request.get_timetable_info(req)
       end
@@ -63,6 +67,10 @@ module THSRParking
           call_api('get', ['cities'], {'city_name' => req})
         end
 
+        def get_one_park_info(req)
+          call_api('get', ['parks', req[:park_id]])
+        end
+
         def get_timetable_info(req)
           call_api('get', ['cities',req[:station_id],'timetable'], {'date' => req[:date], 'direction' => req[:direction]})
         end
@@ -70,8 +78,6 @@ module THSRParking
         def get_restaurants_info(req)
           call_api('get', ['restaurants',req[:park_id]], {'radius' => req[:radius]})
         end
-
-
 
         private
 
@@ -83,6 +89,7 @@ module THSRParking
         def call_api(method, resources = [], params = {})
           api_path = resources.empty? ? @api_host : @api_root
           url = [api_path, resources].flatten.join('/') + params_str(params)
+
           HTTP.headers('Accept' => 'application/json').send(method, url)
             .then { |http_response| Response.new(http_response) }
         rescue StandardError

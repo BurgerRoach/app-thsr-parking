@@ -25,21 +25,27 @@ module THSRParking
 
     def pass_city(route, city_name)
       parks_made = Service::Parks.new.call(city_name)
-      ### here need to replace with params
-      timetable_made = Service::Timetable.new.call({'city_name':city_name,'date':'2021-01-07','direction':'0'})
+
+      # timetable_made = Service::Timetable.new.call({
+      #   'city_name': city_name,
+      #   'date': Date.today,
+      #   'direction': '0'
+      # })
 
       if parks_made.failure?
         flash[:error] = parks_made.failure
         route.redirect '/'
       end
 
-      if timetable_made.failure?
-        flash[:error] = timetable_made.failure
-        route.redirect '/'
-      end
+      # if timetable_made.failure?
+      #   flash[:error] = timetable_made.failure
+      #   route.redirect '/'
+      # end
 
       parks = parks_made.value!
-      timetables = timetable_made.value!
+      # timetables = timetable_made.value!
+
+      # puts timetables
 
       flash.now[:notice] = 'No match result' if parks.length.zero?
 
@@ -50,7 +56,32 @@ module THSRParking
 
     # parking details: google map & restaurants
     def to_detail(route)
-      # park lat&lng
+      # get park info
+      park_id = route.params['park_id']
+      park_info = Service::Park.new.call({ park_id: park_id })
+      park_info_result = park_info.value!
+
+      # get timetable
+      direction = route.params['direction']
+      direction = '0' if direction.nil?
+
+      direction_text = 'Southward'
+      direction_text = 'Northward' if direction == '1'
+
+      timetable_made = Service::Timetable.new.call({
+        'city_name': park_info_result['result']['city'],
+        'date': Date.today,
+        'direction': direction
+      })
+
+      if timetable_made.failure?
+        flash[:error] = timetable_made.failure
+        route.redirect '/'
+      end
+
+      timetables = timetable_made.value!
+
+      # get restaurants
       park_id = route.params['park_id']
       restaurant_made = Service::RestaurantAround.new.call({ park_id: park_id, radius: '500'})
       if restaurant_made.failure?
@@ -64,9 +95,18 @@ module THSRParking
         'lng': results[:restaurants][0].longitude
       }
 
+      # views
+      view_timetable = Views::Timetable.new(timetables) # turn into view object
       view_restaurants = Views::Restaurant.new(results[:restaurants]) # turn into view object
+      restaurant_length = results[:restaurants].length
 
-      view 'detail', locals: { first_location: first_location, restaurants: view_restaurants }
+      view 'detail', locals: {
+        direction: direction_text,
+        first_location: first_location,
+        restaurants: view_restaurants,
+        restaurant_length: restaurant_length,
+        timetable: view_timetable
+      }
     end
 
     route do |r|

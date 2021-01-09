@@ -229,7 +229,8 @@
 }
 
 .thsr-detail-section .detail-map {
-  padding-right: 0 !important;
+  /* padding-right: 0 !important; */
+  padding: 15px !important;
 }
 
 .thsr-detail-section .detail-map #map {
@@ -238,6 +239,7 @@
 }
 
 .thsr-detail-section .detail-restaurants {
+  background: #EEF0FA !important;
   padding-left: 0 !important;
   overflow: auto;
   height: calc(93vh - 60px);

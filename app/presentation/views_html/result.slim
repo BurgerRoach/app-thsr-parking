@@ -26,7 +26,7 @@ section.thsr-result-section id='result_section'
                 - elsif item.service_status == 2
                   .thsr-park-service Suspended charge
           .content
-            .sub-header
+            .sub-header.d-inline-block
               | remain
               .summary.thsr-park-remain 
                 .ramain-available
@@ -34,6 +34,9 @@ section.thsr-result-section id='result_section'
                 | / 
                 .ramain-total
                   = item.total_spaces
-                | / 
-                .ramain-average
+
+            .sub-header.d-inline-block.float-right
+              | avg. of 3 hours
+              .summary.thsr-park-remain 
+                .ramain-available
                   = item.average

@@ -8,6 +8,7 @@
   padding-left: 30px;
 
   .header-logo {
+    display: inline-block;
     font-size: 1.5rem;
     color: black;
     line-height: 60px;
@@ -23,7 +24,8 @@
 
 .thsr-body {
   // min-height: calc(93vh - 60px);
-  height: calc(100vh - 40px);
+  height: calc(100vh - 60px) !important;
+  margin-top: 10px;
 }
 
 /* thsr footer */
@@ -43,14 +45,14 @@
   /* md */
   @media screen and (min-width: 992px) {
     // height: calc( 93vh - 60px );
-    height: calc( 100vh - 40px );
+    height: calc( 100vh - 60px );
   }
 
   .ui.grid {
     /* md */
     @media screen and (min-width: 992px) {
       // height: calc( 93vh - 60px );
-      height: calc( 100vh - 40px );
+      height: calc( 100vh - 60px );
     }
   }
 
@@ -183,7 +185,7 @@
     .content-text {
       position: absolute;
       right: 30px;
-      bottom: 45px;
+      bottom: 63px;
       z-index: 3;
 
       color: white;
@@ -237,6 +239,13 @@
         margin-left: 5px;
       }
     }
+
+    .d-inline-block {
+      display: inline-block !important;
+    }
+    .float-right {
+      float: right;
+    }
   }
 }
 
@@ -249,44 +258,133 @@
 // google map
 .thsr-detail-section {
   .detail-map {
-    padding-right: 0 !important;
+    // margin-top: 1rem;
+    padding: 0 35px !important;
+    padding-right: 15px !important;
 
-    #map {
-      height: calc(93vh - 60px);
+    #timetable {
+      height: calc(30vh);
       width: 100%;
+      border-radius: 15px;
+      overflow: hidden;
+      background: #FAFAFA;
+      padding: 15px 20px;
+      margin-bottom: 15px;
+
+      .timetable-title {
+        height: 10px;
+        font-weight: bold;
+        font-size: 1.1rem;
+        color: #757575;
+
+        .train-direction {
+          float: right;
+
+          .direction-btns {
+            button {
+              font-size: 0.4rem !important;
+            }
+          }
+        }
+      }
+
+      .timetable-table {
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        margin-top: 20px;
+        height: 100%;
+        overflow: auto;
+      }
+
+      // .timetable-label {
+      //   font-size: 1rem;
+      //   font-weight: bold;
+      //   letter-spacing: 0.0825rem;
+      //   margin-bottom: 5px;
+      // }
+    }
+    
+    #map {
+      height: calc(70vh - 90px);
+      width: 100%;
+      border-radius: 15px;
     }
   }
 
-  .detail-restaurants {
+  .detail-restaurants-sidebar {
     padding-left: 0 !important;
-    overflow: auto;
-    height: calc(93vh - 60px);
+    // margin-top: 1rem;
+    overflow: hidden;
+    height: calc(100vh - 80px);
+    background: #FAFAFA;
+    border-radius: 15px;
 
-    .restaurant-card {
-      width: 70%;
-      margin: 0 auto;
-      margin-bottom: 25px;
-      cursor: pointer;
+    .sidebar-title {
+      height: 10px;
+      padding-left: 18px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #757575;
 
-      .card-img {
-        height: 150px;
-        width: 100%;
+      .count {
+        margin-left: 8px;
       }
+    }
 
-      .card-vicinity {
-        margin-top: 15px;
-      }
+    .sidebar-restaurant-cards {
+      margin-top: 20px;
+      height: calc(100vh - 100px);
+      overflow: auto;
 
-      .card-rating-total-text {
-        margin-left: 5px;
-        font-size: 0.625rem;
-      }
-
-      .card-data {
+      &::-webkit-scrollbar {
         display: none;
       }
+  
+      .restaurant-card {
+        width: 80%;
+        margin: 0 auto;
+        margin-bottom: 25px;
+        cursor: pointer;
+        box-shadow: none !important;
+  
+        .card-status {
+          margin-left: 5px;;
+          font-size: 0.2rem !important;
+  
+          &.status--success {
+            color: #8BC34A;
+          }
+  
+          &.status--error {
+            color: #F44336;
+          }
+        }
+  
+        .card-img {
+          height: 150px;
+          width: 100%;
+        }
+  
+        .card-vicinity {
+          margin-top: 5px;
+          color: #424242;
+        }
+  
+        .card-rating-total-text {
+          margin-left: 5px;
+          font-size: 0.625rem;
+        }
+  
+        .card-data {
+          display: none;
+        }
+      }
     }
   }
+
+ 
 }
 
 
