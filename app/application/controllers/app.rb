@@ -91,8 +91,8 @@ module THSRParking
       results = restaurant_made.value!
       flash.now[:notice] = 'No match result' if results[:restaurants].length.zero?
       first_location = {
-        'lat': results[:restaurants][0].latitude,
-        'lng': results[:restaurants][0].longitude
+        'lat': park_info_result['result'].latitude,
+        'lng': park_info_result['result'].longitude
       }
 
       # views
